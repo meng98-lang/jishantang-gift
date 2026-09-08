@@ -30,22 +30,29 @@ module.exports = async (req, res) => {
     `Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway. My claim code: ${ref}. Are there still spots available?`;
   const target = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
-  // Log click (does not block redirect)
-  insertRow("ad_clicks", {
-    ref_code: ref,
-    site: SITE,
-    type,
-    campaign: query.campaign ? String(query.campaign).slice(0, 100) : "midautumn_anniv",
-    gclid: track.gclid || null,
-    ttclid: track.ttclid || null,
-    utm_source: track.utm_source || null,
-    utm_medium: track.utm_medium || null,
-    utm_campaign: track.utm_campaign || null,
-    landing: query.landing ? String(query.landing).slice(0, 300) : null,
-    wa_number: phone,
-    ip: getClientIp(req),
-    ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
-  });
+  // Log click BEFORE redirecting. On serverless (Vercel) the function may be
+  // frozen immediately after we respond, so an un-awaited insert can be lost.
+  // We await the write to guarantee the click + attribution is persisted.
+  try {
+    await insertRow("ad_clicks", {
+      ref_code: ref,
+      site: SITE,
+      type,
+      campaign: query.campaign ? String(query.campaign).slice(0, 100) : "midautumn_anniv",
+      gclid: track.gclid || null,
+      ttclid: track.ttclid || null,
+      utm_source: track.utm_source || null,
+      utm_medium: track.utm_medium || null,
+      utm_campaign: track.utm_campaign || null,
+      landing: query.landing ? String(query.landing).slice(0, 300) : null,
+      wa_number: phone,
+      ip: getClientIp(req),
+      ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
+    });
+  } catch (e) {
+    console.error("[go] log click failed:", e.message);
+    // Never block the user from reaching WhatsApp on logging failure.
+  }
 
   res.writeHead(302, { Location: target, "Cache-Control": "no-store" });
   res.end();
