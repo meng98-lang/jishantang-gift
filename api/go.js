@@ -1,38 +1,34 @@
-// 伺服器轉址端點：/api/go?type=line|wa&campaign=xxx&ref=xxx
-// 1) 記錄點擊（含 gclid/ttclid/utm 廣告參數）
-// 2) 302 直接導向 LINE / WhatsApp（無空白頁）
+// Server redirect endpoint: /api/go?type=wa&campaign=xxx&ref=xxx
+// 1) Logs the click (with gclid/ttclid/utm ad params)
+// 2) 302 redirect to WhatsApp (no blank page)
 const { getTrackParams, getClientIp, genRefCode, insertRow } = require("../lib/track");
 
 const SITE = "jishantang-gift";
+// Default Jishantang business number (HK +852 6513 1587). Override via Vercel env WA_NUMBER.
+const DEFAULT_WA = "85265131587";
 
-function buildTarget(type, query) {
-  const ref = query.ref || genRefCode("G");
-  if (type === "wa") {
-    const phone = (process.env.WA_NUMBER || "19432626236").replace(/\D/g, "");
-    const msg =
-      query.msg ||
-      `您好！我要登記中秋店慶【免費領取名貴藥材】活動，我的領取編號：${ref}，請問還有名額嗎？`;
-    return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-  }
-  // LINE：使用官方帳號網址（LINE 無法在連結中預填訊息，活動頁會引導發送地址）
-  const lineBase = process.env.LINE_URL || "https://line.me/R/ti/p/@your_line_id";
-  const sep = lineBase.includes("?") ? "&" : "?";
-  return `${lineBase}${sep}ref=${ref}`;
+function buildWaTarget(query, ref) {
+  const phone = (process.env.WA_NUMBER || DEFAULT_WA).replace(/\D/g, "");
+  const msg =
+    query.msg ||
+    `Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway. My claim code: ${ref}. Are there still spots available?`;
+  return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 }
 
 module.exports = async (req, res) => {
   const query = req.query || {};
-  const type = query.type === "wa" ? "wa" : "line";
+  // This site now uses WhatsApp for everyone; keep "line" accepted but mapped to WhatsApp.
+  const type = query.type === "line" ? "wa" : "wa";
 
   const ref = query.ref || genRefCode("G");
   const track = getTrackParams(query);
 
-  // 記錄點擊（不擋跳轉）
+  // Log click (fire-and-forget, does not block redirect)
   insertRow("ad_clicks", {
     ref_code: ref,
     site: SITE,
     type,
-    campaign: query.campaign ? String(query.campaign).slice(0, 100) : null,
+    campaign: query.campaign ? String(query.campaign).slice(0, 100) : "midautumn_anniv",
     gclid: track.gclid || null,
     ttclid: track.ttclid || null,
     utm_source: track.utm_source || null,
@@ -43,7 +39,7 @@ module.exports = async (req, res) => {
     ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
   });
 
-  const target = buildTarget(type, query);
+  const target = buildWaTarget(query, ref);
   res.writeHead(302, { Location: target, "Cache-Control": "no-store" });
   res.end();
 };
