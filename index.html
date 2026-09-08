@@ -659,23 +659,42 @@
   </div>
 
   <script>
-    // ★★★ 請將下方 LINE 官方帳號連結替換為您真實的 LINE 帳號網址 ★★★
-    // 格式範例：https://line.me/R/ti/p/@你的LINE_ID
-    var LINE_URL = "https://line.me/R/ti/p/@your_line_id";
+    // ===== 廣告歸因：落地頁攔截 gclid / ttclid / fbclid / utm =====
+    var TRACK_KEYS = ["gclid","ttclid","fbclid","utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+    function captureParams() {
+      var q = new URLSearchParams(location.search);
+      var saved = {};
+      try { saved = JSON.parse(sessionStorage.getItem("adParams") || "{}"); } catch(e) { saved = {}; }
+      TRACK_KEYS.forEach(function(k){
+        var v = q.get(k);
+        if (v) { saved[k] = v; }
+      });
+      try { sessionStorage.setItem("adParams", JSON.stringify(saved)); } catch(e) {}
+      return saved;
+    }
+    var AD_PARAMS = captureParams();
 
-    function waLineLink(msg) {
-      var sep = LINE_URL.indexOf("?") >= 0 ? "&" : "?";
-      return LINE_URL + (msg ? sep + "text=" + encodeURIComponent(msg) : "");
+    // 組出 /api/go 轉址連結（伺服器端記錄點擊 + 302 跳 LINE/WhatsApp）
+    function goLink(extra) {
+      var p = new URLSearchParams();
+      p.set("type", (extra && extra.type) || "line");
+      p.set("campaign", "midautumn_anniv");
+      TRACK_KEYS.forEach(function(k){ if (AD_PARAMS[k]) p.set(k, AD_PARAMS[k]); });
+      if (extra && extra.ref) p.set("ref", extra.ref);
+      if (extra && extra.msg) p.set("msg", extra.msg);
+      return "/api/go?" + p.toString();
     }
 
-    // 綁定所有 LINE 按鈕
-    document.getElementById("lineBtnTop").href = waLineLink("您好，我想參加中秋店慶免費領取名貴藥材活動！");
-    document.getElementById("lineBtnSticky").href = waLineLink("您好，我想參加免費領取活動！");
-    document.getElementById("lineBtnContact").href = waLineLink("您好，我想諮詢濟善堂參茸行的服務。");
+    // 綁定所有 LINE 按鈕 → 統一走伺服器轉址追蹤
+    document.getElementById("lineBtnTop").href = goLink({ type: "line" });
+    document.getElementById("lineBtnSticky").href = goLink({ type: "line" });
+    document.getElementById("lineBtnContact").href = goLink({ type: "line" });
 
-    // 表單送出：帶入資料並跳轉 LINE
+    // 表單送出：先把名單 POST 落地到伺服器，再跳轉 LINE（即使客戶沒發訊息，名單也已保存）
+    var submitting = false;
     document.getElementById("giftForm").addEventListener("submit", function(e) {
       e.preventDefault();
+      if (submitting) return;
       var name = document.getElementById("f-name").value.trim();
       var phone = document.getElementById("f-phone").value.trim();
       var age = document.getElementById("f-age").value.trim();
@@ -686,16 +705,30 @@
         alert("本活動限年滿 40 歲以上貴賓參加，感謝您的支持！");
         return;
       }
+      submitting = true;
 
-      var msg = "您好，我要登記中秋店慶【免費領取名貴藥材】活動：\n"
-        + "姓名：" + name + "\n"
-        + "電話：" + phone + "\n"
-        + "年齡：" + age + " 歲\n"
-        + "收件地址：" + addr + "\n"
-        + "想領取品項：" + (item || "由客服安排") + "\n"
-        + "麻盡快為我確認領取資格，謝謝！";
+      var payload = {
+        name: name, phone: phone, age: parseInt(age, 10) || null,
+        address: addr, item: item, source: "gift_form",
+        campaign: "midautumn_anniv"
+      };
+      TRACK_KEYS.forEach(function(k){ if (AD_PARAMS[k]) payload[k] = AD_PARAMS[k]; });
 
-      window.open(waLineLink(msg), "_blank", "noopener");
+      fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload)
+      }).then(function(r){ return r.json(); }).catch(function(){ return { ok: false }; })
+        .then(function(data) {
+          // 無論落地成功與否都導向 LINE（不影響轉換）；成功則帶 ref 編號
+          var ref = data && data.ok ? data.ref : null;
+          var msg = "您好！我要登記中秋店慶【免費領取名貴藥材】活動。\n"
+            + "姓名：" + name + "\n電話：" + phone + "\n年齡：" + age + " 歲\n"
+            + "收件地址：" + addr + "\n想領取品項：" + (item || "由客服安排") + "\n"
+            + (ref ? "我的領取編號：" + ref + "\n" : "")
+            + "請盡快為我確認領取資格，謝謝！";
+          window.location.href = goLink({ type: "line", ref: ref || undefined, msg: msg });
+        });
     });
 
     // 彈窗
