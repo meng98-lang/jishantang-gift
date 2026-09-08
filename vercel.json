@@ -1,0 +1,15 @@
+{
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://googleads.g.doubleclick.net https://www.google.com https://www.google-analytics.com https://region1.google-analytics.com https://ssl.google-analytics.com; style-src 'self' 'unsafe-inline'; font-src 'self' data:; img-src 'self' data: blob: https://www.googletagmanager.com https://www.google-analytics.com https://google-analytics.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net; connect-src 'self' https://www.googletagmanager.com https://www.google-analytics.com https://google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://googleads.g.doubleclick.net https://stats.g.doubleclick.net; frame-src https://www.googletagmanager.com https://www.google.com https://googleads.g.doubleclick.net; form-action 'self'; upgrade-insecure-requests"
+        },
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" }
+      ]
+    }
+  ]
+}
