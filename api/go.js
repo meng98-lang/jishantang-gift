@@ -25,9 +25,14 @@ module.exports = async (req, res) => {
     phone = picked ? picked.phone : FALLBACK_WA.replace(/\D/g, "");
   }
 
+  // WhatsApp prefilled message. Traditional Chinese by default; English only
+  // when the visitor is browsing the site in English (lang=en).
+  const lang = String(query.lang || "zh").toLowerCase();
   const msg =
     query.msg ||
-    `Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway. My claim code: ${ref}. Are there still spots available?`;
+    (lang.startsWith("en")
+      ? `Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway. My claim code: ${ref}. Are there still spots available?`
+      : `您好！我想參加「中秋佳節 × 週年店慶」長白山野山參免費領取活動。我的領取編號：${ref}。請問現在還有名額嗎？謝謝！`);
   const target = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
 
   // Log click BEFORE redirecting. On serverless (Vercel) the function may be

@@ -322,6 +322,7 @@ function adParams(){
 }
 function adQuery(){
   var ad = adParams(), qp = new URLSearchParams();
+  qp.set("lang", currentLang || "zh");
   Object.keys(ad).forEach(function(k){ qp.set(k, ad[k]); });
   var s = qp.toString();
   return s ? ("&"+s) : "";
@@ -498,7 +499,7 @@ function fireConversion(kind){
 function goWa(e, pos){
   if(e) e.preventDefault();
   fireConversion("click");   // 先送轉換，再跳轉
-  var url = "/api/go?type=wa&campaign=free_gift_en&pos=" + encodeURIComponent(pos||"") + adQuery();
+  var url = "/api/go?type=wa&campaign=free_gift&pos=" + encodeURIComponent(pos||"") + adQuery();
   window.location.href = url;
 }
 
@@ -518,7 +519,8 @@ function submitLead(e){
 
   var payload = {
     name: name, phone: phone, age: age, address: address, item: item,
-    campaign: "free_gift_en"
+    lang: currentLang,
+    campaign: "free_gift"
   };
   var ad = adParams();
   Object.keys(ad).forEach(function(k){ payload[k] = ad[k]; });
