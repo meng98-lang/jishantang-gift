@@ -1,11 +1,14 @@
 // 表單名單落地：POST /api/lead
-// 收到前端表單 → 寫入 gift_leads → 回傳 { ok, ref }（前端再跳 /api/go 帶上 ref）
-const { getTrackParams, getClientIp, genRefCode, insertRow } = require("../lib/track");
+// 收到前端表單 → 選一個輪詢號碼 → 寫入 gift_leads → 回傳 { ok, ref, phone }
+const { getTrackParams, getClientIp, genRefCode, insertRow, pickWaNumber } = require("../lib/track");
+
+const SITE = "jishantang-gift";
+const FALLBACK_WA = "85265131587";
 
 module.exports = async (req, res) => {
+  res.setHeader("Content-Type", "application/json");
   if (req.method !== "POST") {
     res.statusCode = 405;
-    res.setHeader("Content-Type", "application/json");
     return res.end(JSON.stringify({ ok: false, error: "method_not_allowed" }));
   }
 
@@ -17,53 +20,55 @@ module.exports = async (req, res) => {
   }
 
   const name = String(body.name || "").trim().slice(0, 100);
-  const phone = String(body.phone || "").trim().slice(0, 40);
+  const phoneField = String(body.phone || "").trim().slice(0, 40);
   const age = body.age ? parseInt(body.age, 10) : null;
   const address = String(body.address || "").trim().slice(0, 500);
 
-  if (!name || !phone) {
+  if (!name || !phoneField) {
     res.statusCode = 400;
-    res.setHeader("Content-Type", "application/json");
     return res.end(JSON.stringify({ ok: false, error: "missing_name_or_phone" }));
   }
 
   const ref = genRefCode("G");
   const track = getTrackParams(body);
 
+  // 選取輪詢 WhatsApp 號碼（給客戶發訊息用）
+  const picked = await pickWaNumber(SITE, FALLBACK_WA);
+  const waNumber = picked ? picked.phone : FALLBACK_WA.replace(/\D/g, "");
+
+  const common = {
+    gclid: track.gclid || null,
+    ttclid: track.ttclid || null,
+    utm_source: track.utm_source || null,
+    utm_medium: track.utm_medium || null,
+    utm_campaign: track.utm_campaign || null,
+    ip: getClientIp(req),
+    ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
+  };
+
   await insertRow("gift_leads", {
     ref_code: ref,
     name,
-    phone,
+    phone: phoneField,
     age: Number.isFinite(age) ? age : null,
     address,
     item: body.item ? String(body.item).slice(0, 100) : null,
     source: String(body.source || "gift_form").slice(0, 50),
-    campaign: body.campaign ? String(body.campaign).slice(0, 100) : null,
-    gclid: track.gclid || null,
-    ttclid: track.ttclid || null,
-    utm_source: track.utm_source || null,
-    utm_medium: track.utm_medium || null,
-    utm_campaign: track.utm_campaign || null,
-    ip: getClientIp(req),
-    ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
+    campaign: body.campaign ? String(body.campaign).slice(0, 100) : "midautumn_anniv",
+    wa_number: waNumber,
+    ...common,
   });
 
   insertRow("ad_clicks", {
     ref_code: ref,
-    site: "jishantang-gift",
+    site: SITE,
     type: "lead",
     campaign: body.campaign ? String(body.campaign).slice(0, 100) : "midautumn_anniv",
-    gclid: track.gclid || null,
-    ttclid: track.ttclid || null,
-    utm_source: track.utm_source || null,
-    utm_medium: track.utm_medium || null,
-    utm_campaign: track.utm_campaign || null,
     landing: null,
-    ip: getClientIp(req),
-    ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
+    wa_number: waNumber,
+    ...common,
   });
 
-  res.setHeader("Content-Type", "application/json");
   res.statusCode = 200;
-  res.end(JSON.stringify({ ok: true, ref }));
+  res.end(JSON.stringify({ ok: true, ref, phone: waNumber }));
 };

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex,nofollow">
+<title>後台管理 · 濟善堂</title>
+<style>
+  :root{
+    --red:#b01212; --red-d:#8c0d0d; --gold:#d4a23a; --ink:#1f2024; --muted:#6b7280;
+    --bg:#f4f5f7; --card:#fff; --line:#e6e7eb; --green:#15803d; --red-badge:#dc2626;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,"PingFang TC","Microsoft JhengHei","Segoe UI",sans-serif;}
+  body{background:var(--bg);color:var(--ink);min-height:100vh;}
+  .wrap{max-width:1080px;margin:0 auto;padding:20px 16px 60px;}
+  header.top{display:flex;align-items:center;justify-content:space-between;padding:14px 0;border-bottom:2px solid var(--red);margin-bottom:22px;}
+  .brand{font-size:20px;font-weight:800;color:var(--red);}
+  .brand small{color:var(--muted);font-weight:500;font-size:13px;margin-left:8px;}
+  .btn{border:none;border-radius:8px;padding:10px 16px;font-size:14px;font-weight:700;cursor:pointer;}
+  .btn-primary{background:var(--red);color:#fff;}
+  .btn-primary:hover{background:var(--red-d);}
+  .btn-ghost{background:#fff;color:var(--ink);border:1px solid var(--line);}
+  .btn-sm{padding:6px 12px;font-size:13px;}
+  /* login */
+  .login{max-width:380px;margin:80px auto;background:var(--card);border-radius:14px;padding:34px 28px;box-shadow:0 10px 30px rgba(0,0,0,.08);text-align:center;}
+  .login h1{font-size:22px;color:var(--red);margin-bottom:6px;}
+  .login p{color:var(--muted);font-size:14px;margin-bottom:22px;}
+  .login input{width:100%;padding:13px 14px;border:1px solid var(--line);border-radius:9px;font-size:15px;margin-bottom:14px;}
+  .login .btn{width:100%;padding:13px;font-size:16px;}
+  .err{color:var(--red-badge);font-size:14px;margin-top:10px;display:none;}
+  /* cards / grid */
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px;margin-bottom:22px;}
+  .stat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px;}
+  .stat .n{font-size:30px;font-weight:800;color:var(--red);}
+  .stat .l{color:var(--muted);font-size:13px;margin-top:4px;}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:20px;margin-bottom:20px;}
+  .card h2{font-size:17px;margin-bottom:14px;display:flex;align-items:center;gap:8px;}
+  .addrow{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;}
+  .addrow input{flex:1;min-width:160px;padding:11px 13px;border:1px solid var(--line);border-radius:8px;font-size:14px;}
+  table{width:100%;border-collapse:collapse;font-size:14px;}
+  th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--line);}
+  th{color:var(--muted);font-weight:600;font-size:12px;text-transform:uppercase;letter-spacing:.03em;}
+  .tag{display:inline-block;padding:2px 9px;border-radius:20px;font-size:12px;font-weight:700;}
+  .tag.on{background:#e8f5e9;color:var(--green);}
+  .tag.off{background:#fdecea;color:var(--red-badge);}
+  .mono{font-family:ui-monospace,Menlo,monospace;font-weight:700;}
+  .tabs{display:flex;gap:8px;margin-bottom:18px;flex-wrap:wrap;}
+  .tab{padding:9px 16px;border-radius:20px;border:1px solid var(--line);background:#fff;cursor:pointer;font-size:14px;font-weight:600;color:var(--muted);}
+  .tab.active{background:var(--red);color:#fff;border-color:var(--red);}
+  .hidden{display:none;}
+  .scroll{max-height:480px;overflow:auto;}
+  .empty{color:var(--muted);text-align:center;padding:30px;font-size:14px;}
+  .wa-link{color:var(--green);font-weight:700;text-decoration:none;}
+  .ref{font-family:ui-monospace,Menlo,monospace;background:#f0f1f3;padding:1px 6px;border-radius:5px;font-size:12px;}
+  @media(max-width:600px){ .scroll{font-size:12px;} th,td{padding:8px 5px;} }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- 登入 -->
+  <div id="loginView" class="login">
+    <h1>濟善堂 · 後台管理</h1>
+    <p>WhatsApp 號碼輪詢與名單管理</p>
+    <input id="pwd" type="password" placeholder="請輸入管理密碼" onkeydown="if(event.key==='Enter')doLogin()">
+    <button class="btn btn-primary" onclick="doLogin()">登入</button>
+    <div id="loginErr" class="err">密碼錯誤，請重試。</div>
+  </div>
+
+  <!-- 主面板 -->
+  <div id="dashView" class="hidden">
+    <header class="top">
+      <div class="brand">濟善堂 後台<small>WhatsApp 輪詢 · 名單 · 追蹤</small></div>
+      <button class="btn btn-ghost btn-sm" onclick="logout()">登出</button>
+    </header>
+
+    <div class="tabs">
+      <div class="tab active" data-tab="numbers" onclick="switchTab('numbers')">WhatsApp 號碼</div>
+      <div class="tab" data-tab="stats" onclick="switchTab('stats')">統計</div>
+      <div class="tab" data-tab="leads" onclick="switchTab('leads')">領取名單</div>
+      <div class="tab" data-tab="clicks" onclick="switchTab('clicks')">點擊記錄</div>
+    </div>
+
+    <!-- 號碼管理 -->
+    <section id="tab-numbers">
+      <div class="card">
+        <h2>新增 WhatsApp 號碼</h2>
+        <div class="addrow">
+          <input id="newPhone" placeholder="號碼（含國碼，如 85265124774 或 +852 6512 4774）">
+          <input id="newLabel" placeholder="備註（選填，如 客服A / HK-1）" style="max-width:220px">
+          <button class="btn btn-primary" onclick="addNumber()">＋ 新增</button>
+        </div>
+        <div id="numMsg" style="font-size:13px;color:var(--muted);">提示：關閉的號碼不會參與輪詢；至少保留 1 個啟用中號碼。</div>
+      </div>
+      <div class="card">
+        <h2>號碼輪詢池</h2>
+        <table>
+          <thead><tr><th>#</th><th>號碼</th><th>備註</th><th>狀態</th><th>操作</th></tr></thead>
+          <tbody id="numBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 統計 -->
+    <section id="tab-stats" class="hidden">
+      <div class="grid" id="statGrid"></div>
+      <div class="card">
+        <h2>各號碼分流狀況</h2>
+        <table>
+          <thead><tr><th>號碼</th><th>備註</th><th>狀態</th><th>WhatsApp 點擊</th><th>表單名單</th></tr></thead>
+          <tbody id="statNumBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- 名單 -->
+    <section id="tab-leads" class="hidden">
+      <div class="card">
+        <h2>免費領取名單（表單提交）</h2>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>時間</th><th>姓名</th><th>電話</th><th>年齡</th><th>地址</th><th>藥材</th><th>分流號碼</th><th>編號</th></tr></thead>
+            <tbody id="leadBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 點擊 -->
+    <section id="tab-clicks" class="hidden">
+      <div class="card">
+        <h2>WhatsApp 按鈕點擊記錄</h2>
+        <div class="scroll">
+          <table>
+            <thead><tr><th>時間</th><th>類型</th><th>分流號碼</th><th>活動</th><th>gclid</th><th>ttclid</th><th>來源</th><th>編號</th></tr></thead>
+            <tbody id="clickBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>
+
+<script>
+var TOKEN_KEY = "gift_admin_token";
+var token = function(){ try { return localStorage.getItem(TOKEN_KEY) || ""; } catch(e){ return ""; } };
+
+function api(path, opts){
+  opts = opts || {};
+  opts.headers = Object.assign({ "Content-Type":"application/json", "x-admin-token": token() }, opts.headers||{});
+  return fetch(path, opts).then(function(r){ return r.json().then(function(j){ return { status:r.status, body:j }; }); });
+}
+
+function doLogin(){
+  var pwd = document.getElementById("pwd").value;
+  fetch("/api/admin/login", { method:"POST", headers:{"Content-Type":"application/json"}, body:JSON.stringify({ password:pwd }) })
+    .then(function(r){ return r.json(); })
+    .then(function(j){
+      if(j.ok && j.token){
+        localStorage.setItem(TOKEN_KEY, j.token);
+        showDash();
+      } else {
+        document.getElementById("loginErr").style.display = "block";
+      }
+    });
+}
+function logout(){ localStorage.removeItem(TOKEN_KEY); location.reload(); }
+
+function showDash(){
+  document.getElementById("loginView").classList.add("hidden");
+  document.getElementById("dashView").classList.remove("hidden");
+  loadNumbers(); loadStats(); loadLeads(); loadClicks();
+}
+
+function switchTab(name){
+  document.querySelectorAll(".tab").forEach(function(t){ t.classList.toggle("active", t.dataset.tab===name); });
+  ["numbers","stats","leads","clicks"].forEach(function(n){
+    document.getElementById("tab-"+n).classList.toggle("hidden", n!==name);
+  });
+}
+
+function fmtPhone(p){ if(!p) return "-"; var s=String(p); return s.replace(/(\d{2})(\d{4})(\d{4})/,"$1 $2 $3"); }
+function esc(s){ return String(s==null?"":s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c];}); }
+function fmtTime(t){ if(!t) return "-"; try { var d=new Date(t); var p=function(n){return (n<10?"0":"")+n;}; return (d.getMonth()+1)+"/"+d.getDate()+" "+p(d.getHours())+":"+p(d.getMinutes()); } catch(e){ return t; } }
+
+function loadNumbers(){
+  api("/api/admin/data?type=numbers").then(function(res){
+    if(res.status===401){ logout(); return; }
+    var rows = (res.body.numbers||[]);
+    var tb = document.getElementById("numBody");
+    if(!rows.length){ tb.innerHTML = '<tr><td colspan="5" class="empty">尚無號碼，請先新增</td></tr>'; return; }
+    tb.innerHTML = rows.map(function(n,i){
+      return "<tr>"
+        + "<td>"+(i+1)+"</td>"
+        + "<td class='mono'>+"+esc(n.phone)+"</td>"
+        + "<td>"+esc(n.label||"-")+"</td>"
+        + "<td>"+(n.active?"<span class='tag on'>啟用中</span>":"<span class='tag off'>已停用</span>")+"</td>"
+        + "<td>"
+        +   "<button class='btn btn-ghost btn-sm' onclick='toggleNum("+n.id+","+(!n.active)+")'>"+(n.active?"停用":"啟用")+"</button> "
+        +   "<button class='btn btn-ghost btn-sm' style='color:var(--red-badge)' onclick='deleteNum("+n.id+")'>刪除</button>"
+        + "</td>"
+        + "</tr>";
+    }).join("");
+  });
+}
+
+function addNumber(){
+  var phone = document.getElementById("newPhone").value.trim();
+  var label = document.getElementById("newLabel").value.trim();
+  if(!phone){ alert("請輸入號碼"); return; }
+  api("/api/admin/data", { method:"POST", body: JSON.stringify({ action:"add_number", phone:phone, label:label }) })
+    .then(function(res){
+      if(res.body.ok){
+        document.getElementById("newPhone").value=""; document.getElementById("newLabel").value="";
+        loadNumbers(); loadStats();
+      } else if(res.body.error==="number_exists"){ alert("此號碼已存在"); }
+      else { alert("新增失敗："+(res.body.error||"")); }
+    });
+}
+function toggleNum(id, toActive){
+  api("/api/admin/data", { method:"POST", body: JSON.stringify({ action:"toggle_number", id:id }) })
+    .then(function(){ loadNumbers(); loadStats(); });
+}
+function deleteNum(id){
+  if(!confirm("確定刪除此號碼？刪除後無法復原。")) return;
+  api("/api/admin/data", { method:"POST", body: JSON.stringify({ action:"delete_number", id:id }) })
+    .then(function(){ loadNumbers(); loadStats(); });
+}
+
+function loadStats(){
+  api("/api/admin/data?type=stats").then(function(res){
+    if(res.status===401) return;
+    var s = res.body.stats || {};
+    document.getElementById("statGrid").innerHTML = [
+      ["WhatsApp 點擊", s.total_wa_clicks||0],
+      ["表單名單", s.total_leads||0],
+      ["帶 gclid（Google）", s.with_gclid||0],
+      ["帶 ttclid（TikTok）", s.with_ttclid||0]
+    ].map(function(x){ return '<div class="stat"><div class="n">'+x[1]+'</div><div class="l">'+x[0]+'</div></div>'; }).join("");
+    var nums = s.numbers || [];
+    document.getElementById("statNumBody").innerHTML = nums.length ? nums.map(function(n){
+      return "<tr><td class='mono'>+"+esc(n.phone)+"</td><td>"+esc(n.label||"-")+"</td>"
+        + "<td>"+(n.active?"<span class='tag on'>啟用</span>":"<span class='tag off'>停用</span>")+"</td>"
+        + "<td>"+(n.clicks||0)+"</td><td>"+(n.leads||0)+"</td></tr>";
+    }).join("") : '<tr><td colspan="5" class="empty">尚無資料</td></tr>';
+  });
+}
+
+function loadLeads(){
+  api("/api/admin/data?type=leads").then(function(res){
+    if(res.status===401) return;
+    var rows = res.body.leads || [];
+    document.getElementById("leadBody").innerHTML = rows.length ? rows.map(function(l){
+      return "<tr>"
+        + "<td>"+fmtTime(l.created_at)+"</td>"
+        + "<td>"+esc(l.name)+"</td>"
+        + "<td class='mono'>"+esc(l.phone)+"</td>"
+        + "<td>"+esc(l.age||"-")+"</td>"
+        + "<td>"+esc(l.address||"-")+"</td>"
+        + "<td>"+esc(l.item||"-")+"</td>"
+        + "<td class='mono'>"+(l.wa_number?("+"+esc(l.wa_number)):"-")+"</td>"
+        + "<td><span class='ref'>"+esc(l.ref_code||"-")+"</span></td>"
+        + "</tr>";
+    }).join("") : '<tr><td colspan="8" class="empty">尚無名單</td></tr>';
+  });
+}
+
+function loadClicks(){
+  api("/api/admin/data?type=clicks").then(function(res){
+    if(res.status===401) return;
+    var rows = res.body.clicks || [];
+    document.getElementById("clickBody").innerHTML = rows.length ? rows.map(function(c){
+      return "<tr>"
+        + "<td>"+fmtTime(c.created_at)+"</td>"
+        + "<td>"+esc(c.type||"-")+"</td>"
+        + "<td class='mono'>"+(c.wa_number?("+"+esc(c.wa_number)):"-")+"</td>"
+        + "<td>"+esc(c.campaign||"-")+"</td>"
+        + "<td>"+(c.gclid?"<span class='ref'>G</span>":"-")+"</td>"
+        + "<td>"+(c.ttclid?"<span class='ref'>T</span>":"-")+"</td>"
+        + "<td>"+esc(c.utm_source||"-")+"</td>"
+        + "<td><span class='ref'>"+esc(c.ref_code||"-")+"</span></td>"
+        + "</tr>";
+    }).join("") : '<tr><td colspan="8" class="empty">尚無點擊</td></tr>';
+  });
+}
+
+// 啟動：若已有 token 直接進後台
+if(token()){
+  // 驗證 token 是否有效
+  api("/api/admin/data?type=numbers").then(function(res){
+    if(res.status===200) showDash();
+    else { localStorage.removeItem(TOKEN_KEY); }
+  });
+}
+</script>
+</body>
+</html>

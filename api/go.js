@@ -1,29 +1,36 @@
 // Server redirect endpoint: /api/go?type=wa&campaign=xxx&ref=xxx
-// 1) Logs the click (with gclid/ttclid/utm ad params)
-// 2) 302 redirect to WhatsApp (no blank page)
-const { getTrackParams, getClientIp, genRefCode, insertRow } = require("../lib/track");
+// 1) Picks a WhatsApp number from the rotating pool (least-used)
+// 2) Logs the click (with gclid/ttclid/utm + assigned wa_number)
+// 3) 302 redirect to WhatsApp (no blank page)
+const { getTrackParams, getClientIp, genRefCode, insertRow, pickWaNumber } = require("../lib/track");
 
 const SITE = "jishantang-gift";
-// Default Jishantang business number (HK +852 6513 1587). Override via Vercel env WA_NUMBER.
-const DEFAULT_WA = "85265131587";
-
-function buildWaTarget(query, ref) {
-  const phone = (process.env.WA_NUMBER || DEFAULT_WA).replace(/\D/g, "");
-  const msg =
-    query.msg ||
-    `Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway. My claim code: ${ref}. Are there still spots available?`;
-  return `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
-}
+// Fallback number (used only if the number pool is empty).
+const FALLBACK_WA = "85265131587";
 
 module.exports = async (req, res) => {
   const query = req.query || {};
-  // This site now uses WhatsApp for everyone; keep "line" accepted but mapped to WhatsApp.
-  const type = query.type === "line" ? "wa" : "wa";
+  const type = "wa";
 
   const ref = query.ref || genRefCode("G");
   const track = getTrackParams(query);
 
-  // Log click (fire-and-forget, does not block redirect)
+  // Rotating number selection. If the lead form already picked a number (query.phone),
+  // reuse it so the customer reaches the same agent that owns the lead.
+  let phone;
+  if (query.phone && String(query.phone).replace(/\D/g, "").length >= 8) {
+    phone = String(query.phone).replace(/\D/g, "");
+  } else {
+    const picked = await pickWaNumber(SITE, FALLBACK_WA);
+    phone = picked ? picked.phone : FALLBACK_WA.replace(/\D/g, "");
+  }
+
+  const msg =
+    query.msg ||
+    `Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway. My claim code: ${ref}. Are there still spots available?`;
+  const target = `https://wa.me/${phone}?text=${encodeURIComponent(msg)}`;
+
+  // Log click (does not block redirect)
   insertRow("ad_clicks", {
     ref_code: ref,
     site: SITE,
@@ -35,11 +42,11 @@ module.exports = async (req, res) => {
     utm_medium: track.utm_medium || null,
     utm_campaign: track.utm_campaign || null,
     landing: query.landing ? String(query.landing).slice(0, 300) : null,
+    wa_number: phone,
     ip: getClientIp(req),
     ua: (req.headers["user-agent"] || "").toString().slice(0, 300),
   });
 
-  const target = buildWaTarget(query, ref);
   res.writeHead(302, { Location: target, "Cache-Control": "no-store" });
   res.end();
 };

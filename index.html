@@ -1,719 +1,541 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>FREE Wild Ginseng Giveaway | Mid-Autumn & Anniversary | Jishantang Ginseng &amp; Herbs</title>
-  <meta name="description" content="Mid-Autumn Festival & Anniversary giveaway! Free Changbai Mountain wild ginseng, lingzhi, saffron, American ginseng and cordyceps. First 35 applicants aged 40+ only. Free delivery in Malaysia & Singapore. Add our official WhatsApp to claim." />
-  <meta name="keywords" content="free ginseng, wild ginseng, lingzhi, saffron, cordyceps, American ginseng, Chinese herbs, Malaysia, Singapore, giveaway, Mid-Autumn" />
-  <meta property="og:title" content="FREE Wild Ginseng Giveaway | First 35 Applicants" />
-  <meta property="og:description" content="Aged 40+? Claim your free premium Chinese herbs. Free delivery in Malaysia & Singapore. Add our official WhatsApp now." />
-  <meta property="og:type" content="website" />
-  <meta property="og:locale" content="en_MY" />
-  <style>
-    :root {
-      --red: #b91c1c;
-      --red-dark: #7f1d1d;
-      --gold: #f5c542;
-      --gold-dark: #d4a017;
-      --cream: #fff8ec;
-      --wa-green: #25d366;
-      --wa-green-dark: #1ebe5d;
-    }
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-      background: var(--cream);
-      color: #2a1a0f;
-      line-height: 1.7;
-    }
-    .wrap { max-width: 820px; margin: 0 auto; padding: 0 16px; }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Free Changbai Mountain Wild Ginseng — Limited 35 Spots | Ji Shan Tang</title>
+<meta name="description" content="Mid-Autumn & Anniversary: FREE Changbai Mountain wild ginseng for the first 35 approved applicants (age 40+). Free shipping in Malaysia & Singapore. Add us on WhatsApp to claim.">
+<meta property="og:title" content="Free Wild Ginseng — First 35 Applicants | Ji Shan Tang">
+<meta property="og:description" content="Aged 40+? Claim your FREE premium Changbai Mountain wild ginseng. Free shipping in Malaysia & Singapore.">
+<meta property="og:type" content="website">
+<style>
+  :root{
+    --red:#b01212; --red-d:#8c0d0d; --gold:#d4a23a; --gold-l:#f3d98b;
+    --cream:#fdf6ea; --ink:#2b2118; --muted:#7a6f60; --green:#157347;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang TC","Microsoft JhengHei",sans-serif;color:var(--ink);background:#fff;line-height:1.65;}
+  img{max-width:100%;display:block;}
+  a{text-decoration:none;color:inherit;}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 18px;}
 
-    .topbar {
-      background: var(--red);
-      color: #fff;
-      text-align: center;
-      padding: 10px;
-      font-weight: 700;
-      font-size: 0.95rem;
-      letter-spacing: 0.5px;
-    }
+  /* language switch */
+  .langbar{position:sticky;top:0;z-index:60;background:var(--red-d);color:#fff;display:flex;justify-content:flex-end;align-items:center;gap:6px;padding:7px 16px;font-size:13px;}
+  .langbar button{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.35);color:#fff;padding:4px 12px;border-radius:20px;cursor:pointer;font-size:13px;font-weight:700;}
+  .langbar button.active{background:#fff;color:var(--red-d);}
 
-    .hero {
-      background: radial-gradient(circle at 50% 0%, #dc2626 0%, #991b1b 60%, #7f1d1d 100%);
-      color: #fff;
-      text-align: center;
-      padding: 50px 20px 60px;
-      position: relative;
-      overflow: hidden;
-    }
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23f5c542' fill-opacity='0.08'%3E%3Cpath d='M30 0l4 22h22L37 36l8 22-15-11-15 11 8-22L4 22h22z'/%3E%3C/g%3E%3C/svg%3E");
-    }
-    .hero > * { position: relative; z-index: 1; }
-    .hero .badge {
-      display: inline-block;
-      background: var(--gold);
-      color: var(--red-dark);
-      font-weight: 900;
-      padding: 8px 24px;
-      border-radius: 999px;
-      font-size: 1rem;
-      margin-bottom: 18px;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-    }
-    .hero h1 {
-      font-size: 2.7rem;
-      font-weight: 900;
-      line-height: 1.2;
-      text-shadow: 0 3px 10px rgba(0,0,0,0.4);
-      margin-bottom: 12px;
-    }
-    .hero h1 .gold { color: var(--gold); }
-    .hero .sub {
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: #ffe9a8;
-      margin-bottom: 26px;
-    }
-    .hero .free-pill {
-      display: inline-block;
-      background: #fff;
-      color: var(--red);
-      font-size: 2rem;
-      font-weight: 900;
-      padding: 14px 40px;
-      border-radius: 16px;
-      margin-bottom: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-      animation: pulse 1.8s infinite;
-    }
-    @keyframes pulse {
-      0%,100% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-    }
-    .hero .quota { font-size: 1.1rem; margin-top: 16px; color: #fff; }
-    .hero .quota b { color: var(--gold); font-size: 1.4rem; }
+  /* hero */
+  .hero{background:
+    radial-gradient(circle at 15% 20%, rgba(212,162,58,.35), transparent 45%),
+    radial-gradient(circle at 85% 80%, rgba(212,162,58,.25), transparent 45%),
+    linear-gradient(160deg,#8c0d0d 0%, #b01212 45%, #7a0a0a 100%);
+    color:#fff;text-align:center;padding:56px 18px 64px;position:relative;overflow:hidden;}
+  .hero::before{content:"";position:absolute;inset:0;background-image:radial-gradient(rgba(255,255,255,.08) 1px,transparent 1px);background-size:26px 26px;opacity:.5;}
+  .hero .inner{position:relative;z-index:2;max-width:820px;margin:0 auto;}
+  .badge-top{display:inline-block;background:linear-gradient(90deg,var(--gold),var(--gold-l));color:#5a3d00;font-weight:800;padding:8px 22px;border-radius:30px;font-size:15px;letter-spacing:.5px;margin-bottom:20px;box-shadow:0 6px 18px rgba(0,0,0,.25);}
+  .hero h1{font-size:clamp(30px,6vw,52px);line-height:1.18;font-weight:900;margin-bottom:8px;text-shadow:0 3px 12px rgba(0,0,0,.3);}
+  .hero .free{color:var(--gold-l);}
+  .hero .sub{font-size:clamp(16px,2.6vw,21px);color:#ffe9c2;margin:14px 0 8px;font-weight:600;}
+  .hero .limit{display:inline-block;margin-top:10px;background:rgba(0,0,0,.28);border:1px dashed var(--gold-l);padding:10px 20px;border-radius:12px;font-size:17px;font-weight:700;}
+  .hero .limit b{color:var(--gold-l);font-size:22px;}
+  .cta{display:inline-flex;align-items:center;gap:10px;margin-top:26px;background:#25D366;color:#fff;font-size:clamp(18px,3vw,23px);font-weight:800;padding:17px 38px;border-radius:50px;box-shadow:0 12px 30px rgba(37,211,102,.45);animation:pulse 1.8s infinite;border:none;cursor:pointer;}
+  .cta:hover{transform:translateY(-2px);}
+  @keyframes pulse{0%,100%{box-shadow:0 12px 30px rgba(37,211,102,.45);}50%{box-shadow:0 12px 40px rgba(37,211,102,.75);}}
+  .wa-ico{width:26px;height:26px;fill:#fff;}
+  .age-note{margin-top:14px;font-size:14px;color:#ffd9b0;}
 
-    .countdown-box {
-      background: #fff;
-      border-radius: 16px;
-      padding: 24px;
-      margin: -30px auto 0;
-      max-width: 600px;
-      position: relative;
-      z-index: 5;
-      box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-      text-align: center;
-    }
-    .countdown-box h3 { color: var(--red); font-size: 1.1rem; margin-bottom: 14px; }
-    .countdown { display: flex; justify-content: center; gap: 10px; }
-    .cd-item {
-      background: var(--red);
-      color: #fff;
-      border-radius: 10px;
-      padding: 10px 6px;
-      min-width: 64px;
-    }
-    .cd-item .num { font-size: 1.7rem; font-weight: 900; line-height: 1; }
-    .cd-item .label { font-size: 0.8rem; margin-top: 4px; opacity: 0.9; }
+  .countdown{display:flex;justify-content:center;gap:12px;margin:26px 0 4px;}
+  .cd{background:rgba(0,0,0,.32);border-radius:12px;padding:10px 14px;min-width:66px;}
+  .cd .num{font-size:28px;font-weight:900;color:var(--gold-l);}
+  .cd .lab{font-size:12px;color:#ffe9c2;}
 
-    .wa-btn {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-      width: 100%;
-      max-width: 480px;
-      margin: 26px auto 0;
-      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-      color: #fff;
-      text-decoration: none;
-      font-size: 1.35rem;
-      font-weight: 900;
-      padding: 20px 30px;
-      border-radius: 999px;
-      box-shadow: 0 10px 26px rgba(37,211,102,0.45);
-      transition: transform .2s, box-shadow .2s;
-    }
-    .wa-btn:hover { transform: translateY(-3px); box-shadow: 0 14px 34px rgba(37,211,102,0.6); }
-    .wa-btn svg { width: 30px; height: 30px; fill: #fff; flex-shrink: 0; }
+  section{padding:52px 0;}
+  .sec-title{text-align:center;font-size:clamp(24px,4vw,34px);font-weight:900;color:var(--red);margin-bottom:8px;}
+  .sec-sub{text-align:center;color:var(--muted);font-size:16px;margin-bottom:34px;}
+  .divider{width:70px;height:4px;background:linear-gradient(90deg,var(--gold),var(--red));margin:14px auto 0;border-radius:2px;}
 
-    section { padding: 50px 0; }
-    .sec-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 900;
-      color: var(--red-dark);
-      margin-bottom: 8px;
-    }
-    .sec-title .accent { color: var(--red); }
-    .sec-sub {
-      text-align: center;
-      color: #8a6d4b;
-      margin-bottom: 34px;
-      font-size: 1.05rem;
-    }
+  /* products */
+  .products{background:var(--cream);}
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:18px;}
+  .card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 6px 20px rgba(140,13,13,.08);border:1px solid #f0e2cc;text-align:center;transition:transform .2s;}
+  .card:hover{transform:translateY(-5px);}
+  .card .ph{aspect-ratio:1/1;overflow:hidden;background:#f6efe2;}
+  .card .ph img{width:100%;height:100%;object-fit:cover;}
+  .card .body{padding:16px 12px 20px;}
+  .card h3{font-size:17px;color:var(--red-d);font-weight:800;margin-bottom:4px;}
+  .card .gift-tag{display:inline-block;margin-top:8px;background:#e8f7ee;color:var(--green);font-size:12px;font-weight:800;padding:4px 12px;border-radius:20px;}
 
-    .products {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 18px;
-    }
-    .product {
-      background: #fff;
-      border-radius: 14px;
-      overflow: hidden;
-      box-shadow: 0 6px 20px rgba(127,29,29,0.08);
-      border: 2px solid #f3e3c3;
-      transition: transform .25s;
-    }
-    .product:hover { transform: translateY(-6px); }
-    .product img { width: 100%; aspect-ratio: 1/1; object-fit: cover; display: block; }
-    .product .p-name {
-      text-align: center;
-      font-weight: 800;
-      padding: 12px 6px 4px;
-      color: var(--red-dark);
-      font-size: 1.02rem;
-    }
-    .product .p-tag {
-      text-align: center;
-      padding-bottom: 12px;
-      font-size: 0.85rem;
-      color: var(--gold-dark);
-      font-weight: 700;
-    }
+  /* steps */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;}
+  .step{background:#fff;border:2px solid #f3e3cc;border-radius:16px;padding:28px 22px;text-align:center;position:relative;}
+  .step .no{width:46px;height:46px;line-height:46px;border-radius:50%;background:linear-gradient(135deg,var(--red),var(--gold));color:#fff;font-weight:900;font-size:20px;margin:0 auto 14px;}
+  .step h4{font-size:18px;color:var(--red-d);margin-bottom:6px;}
+  .step p{color:var(--muted);font-size:14.5px;}
 
-    .steps {
-      background: #fff;
-      border-radius: 18px;
-      padding: 36px 26px;
-      box-shadow: 0 10px 30px rgba(127,29,29,0.08);
-    }
-    .step { display: flex; gap: 18px; align-items: flex-start; margin-bottom: 26px; }
-    .step:last-child { margin-bottom: 0; }
-    .step .no {
-      flex-shrink: 0;
-      width: 48px; height: 48px;
-      background: var(--red);
-      color: var(--gold);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem; font-weight: 900;
-    }
-    .step h4 { font-size: 1.2rem; color: var(--red-dark); margin-bottom: 4px; }
-    .step p { color: #5a4632; }
+  /* eligibility */
+  .elig{background:linear-gradient(160deg,#fff8ee,#fdeccf);}
+  .elig-box{max-width:680px;margin:0 auto;background:#fff;border-radius:18px;padding:32px 28px;box-shadow:0 10px 30px rgba(140,13,13,.1);}
+  .elig ul{list-style:none;}
+  .elig li{padding:11px 0 11px 38px;position:relative;font-size:16.5px;border-bottom:1px dashed #ecd9b8;}
+  .elig li:last-child{border-bottom:none;}
+  .elig li::before{content:"✓";position:absolute;left:0;top:9px;width:26px;height:26px;line-height:26px;text-align:center;background:var(--green);color:#fff;border-radius:50%;font-weight:900;font-size:14px;}
 
-    .qualify {
-      background: linear-gradient(135deg, #fff 0%, #fff4dd 100%);
-      border: 2px dashed var(--gold-dark);
-      border-radius: 18px;
-      padding: 32px 26px;
-    }
-    .qualify ul { list-style: none; }
-    .qualify li {
-      padding: 10px 0 10px 36px;
-      position: relative;
-      font-size: 1.08rem;
-      border-bottom: 1px dashed #e8d5a8;
-    }
-    .qualify li:last-child { border-bottom: none; }
-    .qualify li::before {
-      content: "\2713";
-      position: absolute;
-      left: 0; top: 10px;
-      width: 26px; height: 26px;
-      background: var(--wa-green);
-      color: #fff;
-      border-radius: 50%;
-      text-align: center;
-      line-height: 26px;
-      font-weight: 900;
-    }
-    .qualify li b { color: var(--red); }
+  /* form */
+  .form-sec{background:var(--cream);}
+  .form-card{max-width:560px;margin:0 auto;background:#fff;border-radius:20px;padding:34px 28px;box-shadow:0 14px 40px rgba(140,13,13,.12);border-top:6px solid var(--red);}
+  .form-card h3{text-align:center;color:var(--red);font-size:23px;margin-bottom:6px;}
+  .form-card .fs{text-align:center;color:var(--muted);font-size:14px;margin-bottom:22px;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-weight:700;font-size:14.5px;margin-bottom:6px;}
+  .field input,.field select{width:100%;padding:13px 14px;border:1.5px solid #e3d6bf;border-radius:10px;font-size:16px;font-family:inherit;}
+  .field input:focus,.field select:focus{outline:none;border-color:var(--red);}
+  .submit{width:100%;background:#25D366;color:#fff;border:none;padding:17px;border-radius:50px;font-size:19px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;margin-top:8px;}
+  .form-note{text-align:center;font-size:12.5px;color:var(--muted);margin-top:14px;}
 
-    .form-card {
-      background: #fff;
-      border-radius: 18px;
-      padding: 34px 26px;
-      box-shadow: 0 12px 36px rgba(127,29,29,0.12);
-    }
-    .form-card label { display: block; font-weight: 700; color: var(--red-dark); margin: 16px 0 6px; }
-    .form-card label .req { color: var(--red); }
-    .form-card input, .form-card textarea {
-      width: 100%;
-      padding: 13px 14px;
-      border: 2px solid #e5d5b8;
-      border-radius: 10px;
-      font-size: 1rem;
-      font-family: inherit;
-      transition: border-color .2s;
-    }
-    .form-card input:focus, .form-card textarea:focus { outline: none; border-color: var(--red); }
-    .form-card .hint { font-size: 0.85rem; color: #9b8768; margin-top: 4px; }
-    .form-card .submit {
-      margin-top: 24px;
-      background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
-      color: #fff;
-      border: none;
-      width: 100%;
-      padding: 18px;
-      border-radius: 999px;
-      font-size: 1.25rem;
-      font-weight: 900;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      box-shadow: 0 10px 26px rgba(37,211,102,0.4);
-      transition: transform .2s;
-    }
-    .form-card .submit:hover { transform: translateY(-2px); }
+  /* trust */
+  .trust{background:#fff;}
+  .tgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:18px;}
+  .titem{text-align:center;padding:20px;}
+  .titem .ic{font-size:38px;margin-bottom:10px;}
+  .titem h5{color:var(--red-d);font-size:16px;margin-bottom:4px;}
+  .titem p{color:var(--muted);font-size:13.5px;}
 
-    .trusts {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-      gap: 16px;
-      text-align: center;
-    }
-    .trust .t-icon { font-size: 2.4rem; margin-bottom: 8px; }
-    .trust h5 { color: var(--red-dark); font-size: 1.05rem; margin-bottom: 4px; }
-    .trust p { font-size: 0.9rem; color: #8a6d4b; }
+  /* final cta */
+  .final{background:linear-gradient(160deg,var(--red-d),var(--red));color:#fff;text-align:center;}
+  .final h2{font-size:clamp(24px,4.5vw,36px);font-weight:900;margin-bottom:10px;}
+  .final p{color:#ffe9c2;font-size:17px;margin-bottom:8px;}
 
-    footer {
-      background: var(--red-dark);
-      color: #f3e3c3;
-      padding: 44px 20px 30px;
-      text-align: center;
-    }
-    footer .f-brand { font-size: 1.5rem; font-weight: 900; color: var(--gold); margin-bottom: 8px; }
-    footer .f-links { margin: 18px 0; }
-    footer .f-links a { color: #ffe9a8; text-decoration: none; margin: 0 14px; font-size: 1rem; }
-    footer .f-links a:hover { color: #fff; }
-    footer .copy { font-size: 1.05rem; font-weight: 700; color: #fff; margin-top: 14px; }
-    footer .f-note { font-size: 0.85rem; opacity: 0.7; margin-top: 10px; }
+  footer{background:#2a1410;color:#e8d9c8;padding:38px 18px 26px;text-align:center;font-size:14px;}
+  footer .fname{font-size:18px;font-weight:800;color:var(--gold-l);margin-bottom:10px;}
+  footer .flinks{display:flex;justify-content:center;gap:22px;flex-wrap:wrap;margin:14px 0;}
+  footer .flinks a{color:#e8d9c8;cursor:pointer;}
+  footer .flinks a:hover{color:var(--gold-l);}
+  footer .copy{color:#b8a892;font-size:13px;margin-top:10px;}
 
-    .modal {
-      display: none;
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.75);
-      z-index: 1000;
-      justify-content: center;
-      align-items: center;
-      padding: 16px;
-    }
-    .modal.active { display: flex; }
-    .modal-box {
-      background: #fff;
-      color: #2a1a0f;
-      border-radius: 16px;
-      max-width: 640px;
-      width: 100%;
-      max-height: 82vh;
-      overflow-y: auto;
-      padding: 34px 30px;
-      position: relative;
-    }
-    .modal-box h2 { color: var(--red); margin-bottom: 18px; }
-    .modal-box h3 { color: var(--red-dark); margin: 18px 0 8px; }
-    .modal-box p, .modal-box li { margin-bottom: 10px; line-height: 1.8; }
-    .modal-box ul { margin-left: 20px; }
-    .modal-close {
-      position: absolute; top: 14px; right: 18px;
-      font-size: 1.8rem; cursor: pointer; color: #aaa; border: none; background: none;
-    }
-    .modal-close:hover { color: #333; }
+  /* sticky bar */
+  .sticky{position:fixed;left:0;right:0;bottom:0;z-index:50;background:linear-gradient(90deg,var(--red-d),var(--red));padding:11px 16px;display:flex;align-items:center;justify-content:center;gap:14px;box-shadow:0 -6px 20px rgba(0,0,0,.25);}
+  .sticky .txt{color:#fff;font-weight:700;font-size:15px;}
+  .sticky .txt b{color:var(--gold-l);}
+  .sticky a{background:#25D366;color:#fff;font-weight:800;padding:11px 22px;border-radius:40px;font-size:16px;display:inline-flex;align-items:center;gap:8px;}
+  body{padding-bottom:70px;}
 
-    .sticky-wa {
-      position: fixed;
-      bottom: 0; left: 0; right: 0;
-      background: rgba(37,211,102,0.97);
-      padding: 12px 16px;
-      z-index: 900;
-      box-shadow: 0 -4px 20px rgba(0,0,0,0.2);
-    }
-    .sticky-wa a {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 900;
-      font-size: 1.1rem;
-    }
-    .sticky-wa svg { width: 24px; height: 24px; fill: #fff; }
-    body { padding-bottom: 64px; }
+  /* modal */
+  .modal{display:none;position:fixed;inset:0;z-index:100;background:rgba(0,0,0,.55);align-items:center;justify-content:center;padding:20px;}
+  .modal.show{display:flex;}
+  .modal .box{background:#fff;border-radius:18px;max-width:520px;width:100%;padding:30px 26px;max-height:85vh;overflow:auto;position:relative;}
+  .modal .close{position:absolute;top:14px;right:18px;font-size:26px;cursor:pointer;color:var(--muted);background:none;border:none;}
+  .modal h3{color:var(--red);font-size:21px;margin-bottom:14px;}
+  .modal p,.modal li{font-size:14.5px;color:#4a4034;margin-bottom:10px;}
+  .modal ul{padding-left:20px;}
 
-    @media (max-width: 600px) {
-      .hero h1 { font-size: 1.9rem; }
-      .hero .free-pill { font-size: 1.5rem; padding: 12px 26px; }
-      .sec-title { font-size: 1.55rem; }
-      .products { grid-template-columns: repeat(2, 1fr); }
-      .wa-btn { font-size: 1.1rem; padding: 16px 22px; }
-    }
-  </style>
+  @media(max-width:600px){
+    .sticky .txt{display:none;}
+    .countdown{gap:8px;}
+    .cd{min-width:56px;padding:8px 10px;}
+  }
+</style>
 </head>
 <body>
-  <div class="topbar">🏮 Mid-Autumn Festival × Anniversary Giveaway | Limited Stock — Claim Yours FREE 🎁</div>
 
-  <!-- Hero -->
-  <header class="hero">
-    <span class="badge">🏮 Jishantang Ginseng &amp; Herbs · Mid-Autumn + Anniversary Event 🏮</span>
-    <h1>Changbai Mountain<br/><span class="gold">Wild Ginseng — FREE</span></h1>
-    <p class="sub">Wild Ginseng · Lingzhi · Saffron · American Ginseng · Cordyceps</p>
-    <div class="free-pill">🎁 100% FREE + Free Delivery 🎁</div>
-    <p class="quota">First <b>35</b> applicants only · Aged <b>40+</b> · Malaysia &amp; Singapore</p>
-    <a id="waBtnTop" class="wa-btn" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.21 3.05c.15.2 2.09 3.19 5.07 4.47.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 01-5.02-1.37l-.36-.21-3.74.98 1-3.65-.23-.38a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 012.89 7c-.01 5.45-4.44 9.87-9.91 9.87zM20.52 3.49A11.78 11.78 0 0012.04 0C5.5 0 .16 5.34.15 11.89c0 2.09.55 4.14 1.59 5.94L0 24l6.34-1.66a11.9 11.9 0 005.7 1.45h.01c6.54 0 11.87-5.34 11.88-11.89 0-3.18-1.24-6.16-3.41-8.41z"/></svg>
-      Add Our Official WhatsApp
+<div class="langbar">
+  <span id="lb-lang">Language:</span>
+  <button id="btn-en" class="active" onclick="setLang('en')">English</button>
+  <button id="btn-zh" onclick="setLang('zh')">繁體中文</button>
+</div>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="inner">
+    <span class="badge-top" data-i18n="badge">🎑 Mid-Autumn Festival & Anniversary Celebration</span>
+    <h1><span data-i18n="hero1">FREE Changbai Mountain</span><br><span class="free" data-i18n="hero2">WILD GINSENG</span></h1>
+    <p class="sub" data-i18n="heroSub">Premium tonic herbs giveaway — Lingzhi, Saffron, American Ginseng, Cordyceps</p>
+    <div class="limit" data-i18n="limitHtml">Only <b>35</b> spots for first applicants · Aged <b>40+</b> only</div>
+    <div class="countdown" id="cd">
+      <div class="cd"><div class="num" id="dh">02</div><div class="lab" data-i18n="days">Days</div></div>
+      <div class="cd"><div class="num" id="dh2">11</div><div class="lab" data-i18n="hours">Hours</div></div>
+      <div class="cd"><div class="num" id="dm">59</div><div class="lab" data-i18n="mins">Mins</div></div>
+      <div class="cd"><div class="num" id="ds">59</div><div class="lab" data-i18n="secs">Secs</div></div>
+    </div>
+    <a class="cta" href="#" onclick="goWa(event,'hero');return false;">
+      <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.15-.2-1.18-1.57-1.18-2.99 0-1.42.74-2.12 1-2.41.26-.29.56-.36.75-.36.19 0 .37 0 .54.01.17.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.61-.07.16-.19.7-.81.88-1.09.19-.28.37-.23.63-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.68-.17 1.36z"/></svg>
+      <span data-i18n="ctaMain">Add Our Official WhatsApp</span>
     </a>
-    <p style="margin-top:14px; font-size:.95rem; opacity:.9;">Tap to add us, then send your name &amp; delivery address to claim.</p>
-  </header>
+    <p class="age-note" data-i18n="ageNote">* Open to those aged 40 and above · Free shipping in Malaysia &amp; Singapore</p>
+  </div>
+</header>
 
-  <!-- Countdown -->
+<!-- PRODUCTS -->
+<section class="products">
   <div class="wrap">
-    <div class="countdown-box">
-      <h3>⏰ Limited-Time Giveaway — While Stock Lasts</h3>
-      <div class="countdown">
-        <div class="cd-item"><div class="num" id="cd-d">02</div><div class="label">Days</div></div>
-        <div class="cd-item"><div class="num" id="cd-h">18</div><div class="label">Hrs</div></div>
-        <div class="cd-item"><div class="num" id="cd-m">46</div><div class="label">Min</div></div>
-        <div class="cd-item"><div class="num" id="cd-s">30</div><div class="label">Sec</div></div>
-      </div>
+    <h2 class="sec-title" data-i18n="prodTitle">Premium Herbs Included</h2>
+    <p class="sec-sub" data-i18n="prodSub">Every approved applicant receives a curated premium gift set</p>
+    <div class="divider"></div>
+    <div class="grid" style="margin-top:34px;">
+      <div class="card"><div class="ph"><img src="images/ginseng.jpg" alt="Wild Ginseng" loading="lazy"></div><div class="body"><h3 data-i18n="p1">Changbai Wild Ginseng</h3><span class="gift-tag" data-i18n="giftTag">FREE GIFT</span></div></div>
+      <div class="card"><div class="ph"><img src="images/lingzhi.jpg" alt="Lingzhi" loading="lazy"></div><div class="body"><h3 data-i18n="p2">Wild Lingzhi (Reishi)</h3><span class="gift-tag" data-i18n="giftTag">FREE GIFT</span></div></div>
+      <div class="card"><div class="ph"><img src="images/saffron.jpg" alt="Saffron" loading="lazy"></div><div class="body"><h3 data-i18n="p3">Premium Saffron</h3><span class="gift-tag" data-i18n="giftTag">FREE GIFT</span></div></div>
+      <div class="card"><div class="ph"><img src="images/american-ginseng.jpg" alt="American Ginseng" loading="lazy"></div><div class="body"><h3 data-i18n="p4">American Ginseng</h3><span class="gift-tag" data-i18n="giftTag">FREE GIFT</span></div></div>
+      <div class="card"><div class="ph"><img src="images/cordyceps.jpg" alt="Cordyceps" loading="lazy"></div><div class="body"><h3 data-i18n="p5">Cordyceps</h3><span class="gift-tag" data-i18n="giftTag">FREE GIFT</span></div></div>
     </div>
   </div>
+</section>
 
-  <!-- Products -->
-  <section>
-    <div class="wrap">
-      <h2 class="sec-title">Premium Herbs <span class="accent">Given Away FREE</span></h2>
-      <p class="sec-sub">A trusted heritage ginseng house — authentic herbs, sourced directly from origin</p>
-      <div class="products">
-        <div class="product">
-          <img src="images/ginseng.jpg" alt="Changbai Mountain Wild Ginseng" loading="lazy" />
-          <div class="p-name">Wild Ginseng</div>
-          <div class="p-tag">★ Main Prize · FREE</div>
-        </div>
-        <div class="product">
-          <img src="images/lingzhi.jpg" alt="Wild Lingzhi Reishi" loading="lazy" />
-          <div class="p-name">Wild Lingzhi</div>
-          <div class="p-tag">Limited</div>
-        </div>
-        <div class="product">
-          <img src="images/saffron.jpg" alt="Premium Saffron" loading="lazy" />
-          <div class="p-name">Premium Saffron</div>
-          <div class="p-tag">Limited</div>
-        </div>
-        <div class="product">
-          <img src="images/american-ginseng.jpg" alt="American Ginseng" loading="lazy" />
-          <div class="p-name">American Ginseng</div>
-          <div class="p-tag">Limited</div>
-        </div>
-        <div class="product">
-          <img src="images/cordyceps.jpg" alt="Cordyceps" loading="lazy" />
-          <div class="p-name">Cordyceps</div>
-          <div class="p-tag">Limited</div>
-        </div>
-      </div>
-      <p style="text-align:center; margin-top:22px; color:#8a6d4b;">* Limited quantity. The actual item is confirmed by our customer service; while stock lasts.</p>
+<!-- STEPS -->
+<section>
+  <div class="wrap">
+    <h2 class="sec-title" data-i18n="stepTitle">Claim in 3 Easy Steps</h2>
+    <div class="divider"></div>
+    <div class="steps" style="margin-top:34px;">
+      <div class="step"><div class="no">1</div><h4 data-i18n="s1t">Add Us on WhatsApp</h4><p data-i18n="s1d">Tap the button to open WhatsApp and message our official customer service.</p></div>
+      <div class="step"><div class="no">2</div><h4 data-i18n="s2t">Send Your Address</h4><p data-i18n="s2d">Send your name, contact number and full delivery address (MY / SG).</p></div>
+      <div class="step"><div class="no">3</div><h4 data-i18n="s3t">Receive Your Free Gift</h4><p data-i18n="s3d">Once verified, your premium ginseng gift set ships to you absolutely free.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Eligibility -->
-  <section style="background:#fdf3e0;">
-    <div class="wrap">
-      <h2 class="sec-title">Who <span class="accent">Can Claim</span></h2>
-      <p class="sec-sub">If you meet the criteria below, you can apply — completely free, no deposit required</p>
-      <div class="qualify">
-        <ul>
-          <li>Aged <b>40 or above</b></li>
-          <li>Among the <b>first 35 applicants</b> in this event</li>
-          <li>Add our official <b>WhatsApp</b> and send your delivery details</li>
-          <li>Complete <b>address registration</b> within the event period</li>
-          <li>One claim per person — <b>no deposit, no handling fee</b></li>
-        </ul>
-      </div>
+<!-- ELIGIBILITY -->
+<section class="elig">
+  <div class="wrap">
+    <h2 class="sec-title" data-i18n="eligTitle">Who Can Apply</h2>
+    <p class="sec-sub" data-i18n="eligSub">Strictly limited to the first 35 approved applicants</p>
+    <div class="divider"></div>
+    <div class="elig-box" style="margin-top:30px;">
+      <ul>
+        <li data-i18n="e1">Aged 40 years or above</li>
+        <li data-i18n="e2">Residing in Malaysia or Singapore</li>
+        <li data-i18n="e3">First 35 applicants during the event period</li>
+        <li data-i18n="e4">One gift set per household / person</li>
+        <li data-i18n="e5">Free shipping — no deposit, no hidden fees</li>
+      </ul>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Steps + Form -->
-  <section>
-    <div class="wrap">
-      <h2 class="sec-title">Claim in <span class="accent">3 Easy Steps</span></h2>
-      <p class="sec-sub">Add us on WhatsApp, send your address, and we ship straight to your door</p>
-      <div class="steps" style="margin-bottom:30px;">
-        <div class="step">
-          <div class="no">1</div>
-          <div>
-            <h4>Tap to add our official WhatsApp</h4>
-            <p>Click any WhatsApp button on this page to instantly add our customer service.</p>
-          </div>
+<!-- FORM -->
+<section class="form-sec" id="apply">
+  <div class="wrap">
+    <div class="form-card">
+      <h3 data-i18n="formTitle">Reserve Your Free Gift</h3>
+      <p class="fs" data-i18n="formSub">Fill in your details — we'll open WhatsApp to complete your claim</p>
+      <form id="giftForm" onsubmit="return submitLead(event)">
+        <div class="field">
+          <label data-i18n="fName">Full Name</label>
+          <input type="text" id="fName" required placeholder="e.g. Tan Wei Ming">
         </div>
-        <div class="step">
-          <div class="no">2</div>
-          <div>
-            <h4>Send your name &amp; delivery address</h4>
-            <p>Fill in the form below — on submit, your details open in WhatsApp automatically (or just message us directly).</p>
-          </div>
+        <div class="field">
+          <label data-i18n="fPhone">WhatsApp Number</label>
+          <input type="tel" id="fPhone" required placeholder="+60 1x-xxx xxxx / +65 xxxx xxxx">
         </div>
-        <div class="step">
-          <div class="no">3</div>
-          <div>
-            <h4>We ship free — delivered to your door</h4>
-            <p>Once our team confirms your eligibility, your premium herbs are shipped free to Malaysia &amp; Singapore.</p>
-          </div>
+        <div class="field">
+          <label data-i18n="fAge">Age</label>
+          <input type="number" id="fAge" required min="1" max="120" placeholder="e.g. 52">
         </div>
-      </div>
-
-      <div class="form-card">
-        <h3 style="text-align:center; color:var(--red-dark); font-size:1.4rem; margin-bottom:6px;">Register &amp; Claim via WhatsApp</h3>
-        <p style="text-align:center; color:#8a6d4b; font-size:.95rem;">Fill in your details below — on submit, WhatsApp opens with your claim info pre-filled.</p>
-        <form id="giftForm">
-          <label>Name <span class="req">*</span></label>
-          <input type="text" id="f-name" placeholder="Enter your full name" required />
-          <label>WhatsApp / Phone Number <span class="req">*</span></label>
-          <input type="tel" id="f-phone" placeholder="e.g. +60 12-345 6789 (MY) / +65 8123 4567 (SG)" required />
-          <label>Age <span class="req">*</span></label>
-          <input type="number" id="f-age" placeholder="Enter your age (must be 40+)" min="40" required />
-          <p class="hint">* This event is for participants aged 40 and above.</p>
-          <label>Country &amp; Delivery Address <span class="req">*</span></label>
-          <textarea id="f-addr" rows="3" placeholder="e.g. Malaysia / Singapore — full delivery address" required></textarea>
-          <label>Preferred item (optional)</label>
-          <input type="text" id="f-item" placeholder="e.g. Changbai Mountain Wild Ginseng" />
-          <button type="submit" class="submit">
-            <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#fff;"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.21 3.05c.15.2 2.09 3.19 5.07 4.47.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 01-5.02-1.37l-.36-.21-3.74.98 1-3.65-.23-.38a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 012.89 7c-.01 5.45-4.44 9.87-9.91 9.87zM20.52 3.49A11.78 11.78 0 0012.04 0C5.5 0 .16 5.34.15 11.89c0 2.09.55 4.14 1.59 5.94L0 24l6.34-1.66a11.9 11.9 0 005.7 1.45h.01c6.54 0 11.87-5.34 11.88-11.89 0-3.18-1.24-6.16-3.41-8.41z"/></svg>
-            Claim FREE via WhatsApp
-          </button>
-        </form>
-      </div>
+        <div class="field">
+          <label data-i18n="fAddr">Delivery Address (MY / SG)</label>
+          <input type="text" id="fAddr" required data-i18n-ph="fAddrPh" placeholder="Full address for free delivery">
+        </div>
+        <button type="submit" class="submit">
+          <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.15-.2-1.18-1.57-1.18-2.99 0-1.42.74-2.12 1-2.41.26-.29.56-.36.75-.36.19 0 .37 0 .54.01.17.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.61-.07.16-.19.7-.81.88-1.09.19-.28.37-.23.63-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.68-.17 1.36z"/></svg>
+          <span data-i18n="fSubmit">Submit & Add WhatsApp</span>
+        </button>
+        <p class="form-note" data-i18n="formNote">🔒 Your information is only used for shipping this free gift and is never shared.</p>
+      </form>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Trust -->
-  <section style="background:#fdf3e0;">
-    <div class="wrap">
-      <h2 class="sec-title">A Heritage Brand <span class="accent">You Can Trust</span></h2>
-      <p class="sec-sub">Jishantang Ginseng &amp; Herbs — generational expertise, genuine products</p>
-      <div class="trusts">
-        <div class="trust">
-          <div class="t-icon">🏪</div>
-          <h5>Heritage House</h5>
-          <p>A generational ginseng &amp; herbs house</p>
-        </div>
-        <div class="trust">
-          <div class="t-icon">🌿</div>
-          <h5>Sourced Direct</h5>
-          <p>Authentic, strictly selected herbs</p>
-        </div>
-        <div class="trust">
-          <div class="t-icon">🚚</div>
-          <h5>Free Delivery</h5>
-          <p>No cost to you — MY &amp; SG</p>
-        </div>
-        <div class="trust">
-          <div class="t-icon">💬</div>
-          <h5>1-to-1 Service</h5>
-          <p>Personal WhatsApp support</p>
-        </div>
-      </div>
+<!-- TRUST -->
+<section class="trust">
+  <div class="wrap">
+    <h2 class="sec-title" data-i18n="trustTitle">Why Trust Us</h2>
+    <div class="divider"></div>
+    <div class="tgrid" style="margin-top:30px;">
+      <div class="titem"><div class="ic">🏅</div><h5 data-i18n="t1t">Heritage Brand</h5><p data-i18n="t1d">Time-honoured ginseng &amp; tonic house, trusted for generations.</p></div>
+      <div class="titem"><div class="ic">🚚</div><h5 data-i18n="t2t">Free Delivery</h5><p data-i18n="t2d">Free insured shipping across Malaysia &amp; Singapore.</p></div>
+      <div class="titem"><div class="ic">🚫</div><h5 data-i18n="t3t">No Deposit</h5><p data-i18n="t3d">Zero fees, zero hidden charges. Truly free for qualified applicants.</p></div>
+      <div class="titem"><div class="ic">✅</div><h5 data-i18n="t4t">Authentic Sourced</h5><p data-i18n="t4d">Directly sourced premium herbs, quality guaranteed.</p></div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Footer -->
-  <footer>
-    <div class="f-brand">Jishantang Ginseng &amp; Herbs</div>
-    <p>Ji Shan Tang · Premium Chinese Herbs</p>
-    <div class="f-links">
-      <a href="#" data-modal="privacy">Privacy Policy</a>
-      <a href="#" data-modal="contact">Contact Us</a>
-      <a href="#" data-modal="about">About Us</a>
-    </div>
-    <p class="copy">© 2024 Jishantang Ginseng &amp; Herbs. All rights reserved.</p>
-    <p class="f-note">This is a Mid-Autumn Festival &amp; Anniversary appreciation event. Limited quantity, while stock lasts.</p>
-  </footer>
-
-  <!-- Sticky WhatsApp bar -->
-  <div class="sticky-wa">
-    <a id="waBtnSticky" href="#" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M17.47 14.38c-.3-.15-1.76-.87-2.03-.97-.27-.1-.47-.15-.67.15-.2.3-.77.97-.94 1.17-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.05-.17-.3-.02-.46.13-.6.13-.13.3-.35.44-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.02-.52-.07-.15-.67-1.61-.91-2.21-.24-.58-.48-.5-.67-.51h-.57c-.2 0-.52.07-.79.37-.27.3-1.03 1.01-1.03 2.46s1.06 2.85 1.21 3.05c.15.2 2.09 3.19 5.07 4.47.71.31 1.26.49 1.69.62.71.23 1.36.2 1.87.12.57-.09 1.76-.72 2-1.41.25-.7.25-1.29.18-1.42-.07-.12-.27-.2-.57-.35zM12.05 21.79h-.01a9.87 9.87 0 01-5.02-1.37l-.36-.21-3.74.98 1-3.65-.23-.38a9.86 9.86 0 01-1.51-5.26c0-5.45 4.44-9.88 9.9-9.88 2.64 0 5.13 1.03 7 2.9a9.83 9.83 0 012.89 7c-.01 5.45-4.44 9.87-9.91 9.87zM20.52 3.49A11.78 11.78 0 0012.04 0C5.5 0 .16 5.34.15 11.89c0 2.09.55 4.14 1.59 5.94L0 24l6.34-1.66a11.9 11.9 0 005.7 1.45h.01c6.54 0 11.87-5.34 11.88-11.89 0-3.18-1.24-6.16-3.41-8.41z"/></svg>
-      Add WhatsApp Now (First 35 Get It FREE)
+<!-- FINAL CTA -->
+<section class="final">
+  <div class="wrap">
+    <h2 data-i18n="finalTitle">Only 35 Spots — Don't Miss Out</h2>
+    <p data-i18n="finalSub">Aged 40+? Add us on WhatsApp now and send your address to claim.</p>
+    <a class="cta" href="#" onclick="goWa(event,'final');return false;">
+      <svg class="wa-ico" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.15-.2-1.18-1.57-1.18-2.99 0-1.42.74-2.12 1-2.41.26-.29.56-.36.75-.36.19 0 .37 0 .54.01.17.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.61-.07.16-.19.7-.81.88-1.09.19-.28.37-.23.63-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.68-.17 1.36z"/></svg>
+      <span data-i18n="ctaMain2">Add Our Official WhatsApp Now</span>
     </a>
   </div>
+</section>
 
-  <!-- Privacy -->
-  <div class="modal" id="modal-privacy">
-    <div class="modal-box">
-      <button class="modal-close" data-close>&times;</button>
-      <h2>Privacy Policy</h2>
-      <p>Effective date: 1 January 2024</p>
-      <h3>1. Information We Collect</h3>
-      <p>Jishantang Ginseng &amp; Herbs ("we") only collects the personal information you voluntarily provide when you join our official WhatsApp to take part in the free giveaway — such as your name, phone number, delivery address and age — for the purpose of event registration and product delivery.</p>
-      <h3>2. How We Use It</h3>
-      <ul>
-        <li>To verify your eligibility for the event;</li>
-        <li>To arrange delivery of the premium herbs and contact you;</li>
-        <li>To provide customer service and event-related notices.</li>
-      </ul>
-      <h3>3. Protection</h3>
-      <p>We do not sell, rent or share your personal information with unrelated third parties. All data is stored securely and accessed only by authorised personnel.</p>
-      <h3>4. Your Rights</h3>
-      <p>You may at any time request to review, correct or delete your personal data, or withdraw your registration, by messaging our official WhatsApp.</p>
-      <h3>5. Contact</h3>
-      <p>For any questions about this Privacy Policy, please contact us via our official WhatsApp.</p>
-    </div>
+<!-- FOOTER -->
+<footer>
+  <div class="fname" data-i18n="footName">Ji Shan Tang Ginseng &amp; Tonic Co.</div>
+  <div data-i18n="footTag">Premium Chinese tonic herbs · Malaysia &amp; Singapore</div>
+  <div class="flinks">
+    <a onclick="openModal('privacy')" data-i18n="fPrivacy">Privacy Policy</a>
+    <a onclick="openModal('contact')" data-i18n="fContact">Contact Us</a>
+    <a onclick="openModal('about')" data-i18n="fAbout">About Us</a>
+    <a href="/admin" data-i18n="fAdmin">Admin</a>
   </div>
+  <div class="copy" data-i18n="footCopy">© 2024 Ji Shan Tang Ginseng &amp; Tonic Co. All rights reserved.</div>
+</footer>
 
-  <!-- Contact -->
-  <div class="modal" id="modal-contact">
-    <div class="modal-box">
-      <button class="modal-close" data-close>&times;</button>
-      <h2>Contact Us</h2>
-      <p><strong>Company:</strong> Jishantang Ginseng &amp; Herbs</p>
-      <p><strong>Business:</strong> Premium Chinese herbs, ginseng &amp; tonics</p>
-      <p><strong>Support:</strong> Official WhatsApp (tap the WhatsApp button on this page)</p>
-      <p><strong>Service areas:</strong> Malaysia &amp; Singapore</p>
-      <p><strong>Hours:</strong> Daily, 9:00 AM – 9:00 PM</p>
-      <p style="margin-top:18px;">Tap below to add our official WhatsApp and our team will assist you:</p>
-      <p style="text-align:center; margin-top:16px;">
-        <a class="wa-btn" style="margin:0; font-size:1.1rem; padding:14px 26px; max-width:340px;" id="waBtnContact" href="#" target="_blank" rel="noopener">💬 Add Us on WhatsApp</a>
-      </p>
-    </div>
+<!-- STICKY -->
+<div class="sticky">
+  <div class="txt" data-i18n="stickyTxt">🎁 FREE Wild Ginseng · <b>Only 35 spots</b></div>
+  <a href="#" onclick="goWa(event,'sticky');return false;">
+    <svg class="wa-ico" viewBox="0 0 24 24" style="width:20px;height:20px;"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38a9.9 9.9 0 0 0 4.79 1.22h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm5.8 14.13c-.24.68-1.4 1.3-1.94 1.38-.5.07-1.13.1-1.82-.11-.42-.13-.96-.31-1.65-.61-2.9-1.25-4.8-4.17-4.95-4.37-.15-.2-1.18-1.57-1.18-2.99 0-1.42.74-2.12 1-2.41.26-.29.56-.36.75-.36.19 0 .37 0 .54.01.17.01.41-.07.64.49.24.57.81 1.97.88 2.11.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.17-.29.37-.42.5-.14.14-.28.29-.12.57.16.28.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.22 1.37.28.14.44.12.61-.07.16-.19.7-.81.88-1.09.19-.28.37-.23.63-.14.26.09 1.64.77 1.92.91.28.14.47.21.54.33.07.12.07.68-.17 1.36z"/></svg>
+    <span data-i18n="stickyBtn">Add WhatsApp</span>
+  </a>
+</div>
+
+<!-- MODALS -->
+<div class="modal" id="modal">
+  <div class="box">
+    <button class="close" onclick="closeModal()">×</button>
+    <div id="modalContent"></div>
   </div>
+</div>
 
-  <!-- About -->
-  <div class="modal" id="modal-about">
-    <div class="modal-box">
-      <button class="modal-close" data-close>&times;</button>
-      <h2>About Us</h2>
-      <p><strong>Jishantang Ginseng &amp; Herbs</strong> is a heritage ginseng and herbs house. Guided by our founding principle of "genuine goods, honest service," we carefully select authentic premium herbs — Changbai Mountain wild ginseng, wild lingzhi, saffron, American ginseng and cordyceps — trusted by Chinese communities worldwide.</p>
-      <h3>Our Mission</h3>
-      <p>To carry forward the wisdom of traditional Chinese wellness, so more people can enjoy herbs they can use with confidence.</p>
-      <h3>This Event</h3>
-      <p>To celebrate the Mid-Autumn Festival and our anniversary, we are running a "Premium Herbs FREE Giveaway". The first 35 applicants aged 40+ can add our official WhatsApp and send their delivery address to receive free wild ginseng and other premium herbs — completely free, with no deposit.</p>
-      <h3>Why Trust Us</h3>
-      <ul>
-        <li>A heritage brand with genuine, authentic products;</li>
-        <li>Completely free — no deposit or handling fees;</li>
-        <li>Official WhatsApp with dedicated 1-to-1 service;</li>
-        <li>Limited quantity, while stock lasts.</li>
-      </ul>
-    </div>
-  </div>
-
-  <script>
-    // ===== Ad attribution: capture gclid / ttclid / fbclid / utm on landing =====
-    var TRACK_KEYS = ["gclid","ttclid","fbclid","utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
-    var AD_PARAMS = (function() {
-      var q = new URLSearchParams(location.search);
-      var saved = {};
-      try { saved = JSON.parse(sessionStorage.getItem("adParams") || "{}"); } catch(e) { saved = {}; }
-      TRACK_KEYS.forEach(function(k){ var v = q.get(k); if (v) saved[k] = v; });
-      try { sessionStorage.setItem("adParams", JSON.stringify(saved)); } catch(e) {}
-      return saved;
-    })();
-
-    // Build the server redirect link /api/go (logs the click server-side, then 302 to WhatsApp)
-    function goLink(extra) {
-      var p = new URLSearchParams();
-      p.set("type", "wa");
-      p.set("campaign", "midautumn_anniv");
-      TRACK_KEYS.forEach(function(k){ if (AD_PARAMS[k]) p.set(k, AD_PARAMS[k]); });
-      if (extra && extra.ref) p.set("ref", extra.ref);
-      if (extra && extra.msg) p.set("msg", extra.msg);
-      return "/api/go?" + p.toString();
+<script>
+/* ============ 廣告參數捕獲 ============ */
+(function(){
+  try{
+    var p = new URLSearchParams(location.search);
+    var keys = ["gclid","ttclid","fbclid","msclkid","utm_source","utm_medium","utm_campaign","utm_content","utm_term"];
+    var saved = {};
+    keys.forEach(function(k){ var v = p.get(k); if(v) saved[k]=v; });
+    if(Object.keys(saved).length){
+      var ex = {};
+      try{ ex = JSON.parse(localStorage.getItem("gift_ad")||"{}"); }catch(e){}
+      Object.assign(ex, saved);
+      localStorage.setItem("gift_ad", JSON.stringify(ex));
     }
+  }catch(e){}
+})();
+function adParams(){
+  try{ return JSON.parse(localStorage.getItem("gift_ad")||"{}"); }catch(e){ return {}; }
+}
+function adQuery(){
+  var ad = adParams(), qp = new URLSearchParams();
+  Object.keys(ad).forEach(function(k){ qp.set(k, ad[k]); });
+  var s = qp.toString();
+  return s ? ("&"+s) : "";
+}
 
-    // Bind all WhatsApp buttons to the tracked server redirect
-    ["waBtnTop","waBtnSticky","waBtnContact"].forEach(function(id){
-      var el = document.getElementById(id);
-      if (el) el.href = goLink({});
-    });
+/* ============ 雙語 i18n ============ */
+var I18N = {
+  en: {
+    badge:"🎑 Mid-Autumn Festival & Anniversary Celebration",
+    hero1:"FREE Changbai Mountain", hero2:"WILD GINSENG",
+    heroSub:"Premium tonic herbs giveaway — Lingzhi, Saffron, American Ginseng, Cordyceps",
+    limitHtml:"Only <b>35</b> spots for first applicants · Aged <b>40+</b> only",
+    days:"Days", hours:"Hours", mins:"Mins", secs:"Secs",
+    ctaMain:"Add Our Official WhatsApp",
+    ctaMain2:"Add Our Official WhatsApp Now",
+    ageNote:"* Open to those aged 40 and above · Free shipping in Malaysia & Singapore",
+    prodTitle:"Premium Herbs Included", prodSub:"Every approved applicant receives a curated premium gift set",
+    giftTag:"FREE GIFT",
+    p1:"Changbai Wild Ginseng", p2:"Wild Lingzhi (Reishi)", p3:"Premium Saffron", p4:"American Ginseng", p5:"Cordyceps",
+    stepTitle:"Claim in 3 Easy Steps",
+    s1t:"Add Us on WhatsApp", s1d:"Tap the button to open WhatsApp and message our official customer service.",
+    s2t:"Send Your Address", s2d:"Send your name, contact number and full delivery address (MY / SG).",
+    s3t:"Receive Your Free Gift", s3d:"Once verified, your premium ginseng gift set ships to you absolutely free.",
+    eligTitle:"Who Can Apply", eligSub:"Strictly limited to the first 35 approved applicants",
+    e1:"Aged 40 years or above", e2:"Residing in Malaysia or Singapore", e3:"First 35 applicants during the event period",
+    e4:"One gift set per household / person", e5:"Free shipping — no deposit, no hidden fees",
+    formTitle:"Reserve Your Free Gift", formSub:"Fill in your details — we'll open WhatsApp to complete your claim",
+    fName:"Full Name", fPhone:"WhatsApp Number", fAge:"Age", fAddr:"Delivery Address (MY / SG)",
+    fAddrPh:"Full address for free delivery",
+    fSubmit:"Submit & Add WhatsApp",
+    formNote:"🔒 Your information is only used for shipping this free gift and is never shared.",
+    ageErr:"Sorry — this free gift is only for applicants aged 40 or above.",
+    fillErr:"Please fill in all fields.",
+    trustTitle:"Why Trust Us",
+    t1t:"Heritage Brand", t1d:"Time-honoured ginseng & tonic house, trusted for generations.",
+    t2t:"Free Delivery", t2d:"Free insured shipping across Malaysia & Singapore.",
+    t3t:"No Deposit", t3d:"Zero fees, zero hidden charges. Truly free for qualified applicants.",
+    t4t:"Authentic Sourced", t4d:"Directly sourced premium herbs, quality guaranteed.",
+    finalTitle:"Only 35 Spots — Don't Miss Out",
+    finalSub:"Aged 40+? Add us on WhatsApp now and send your address to claim.",
+    footName:"Ji Shan Tang Ginseng & Tonic Co.",
+    footTag:"Premium Chinese tonic herbs · Malaysia & Singapore",
+    fPrivacy:"Privacy Policy", fContact:"Contact Us", fAbout:"About Us", fAdmin:"Admin",
+    footCopy:"© 2024 Ji Shan Tang Ginseng & Tonic Co. All rights reserved.",
+    stickyTxt:"🎁 FREE Wild Ginseng · <b>Only 35 spots</b>", stickyBtn:"Add WhatsApp",
+    lbLang:"Language:",
+    modalPrivacyT:"Privacy Policy",
+    modalPrivacy:"<p>We respect your privacy. Personal information collected during this event (name, contact number, age, delivery address) is used <b>solely</b> to verify eligibility and ship your free gift.</p><ul><li>We never sell, rent or share your information with third parties.</li><li>Data is stored securely and only accessible to our customer service team.</li><li>You may request deletion of your data at any time by contacting us on WhatsApp.</li></ul>",
+    modalContactT:"Contact Us",
+    modalContact:"<p><b>Ji Shan Tang Ginseng &amp; Tonic Co.</b></p><p>📱 Customer Service: WhatsApp only — tap any green button on this page.</p><p>🚚 Delivery coverage: Malaysia &amp; Singapore</p><p>🕐 Service hours: Mon–Sun, 9:00–21:00 (GMT+8)</p>",
+    modalAboutT:"About Us",
+    modalAbout:"<p><b>Ji Shan Tang</b> is a heritage ginseng and tonic herb house dedicated to bringing authentic, premium Chinese tonics to overseas Chinese communities.</p><p>We source directly from Changbai Mountain and other renowned production regions, ensuring every product is genuine and quality-guaranteed.</p><p>This Mid-Autumn &amp; Anniversary giveaway is our way of giving back to the community — sharing the gift of health with our elders.</p>"
+  },
+  zh: {
+    badge:"🎑 中秋佳節 · 週年店慶",
+    hero1:"長白山", hero2:"野山參 免費送",
+    heroSub:"名貴補品大方送 —— 靈芝、藏紅花、花旗參、冬蟲夏草",
+    limitHtml:"僅限前 <b>35</b> 名申請者 · 年滿 <b>40 歲</b> 即可",
+    days:"天", hours:"時", mins:"分", secs:"秒",
+    ctaMain:"立即加入官方 WhatsApp",
+    ctaMain2:"立即加入官方 WhatsApp",
+    ageNote:"* 限年滿 40 歲（含）以上 · 馬來西亞、新加坡免運費",
+    prodTitle:"贈送名貴藥材", prodSub:"審核通過者，即可獲得一份精心搭配的尊貴禮包",
+    giftTag:"免費贈送",
+    p1:"長白山野山參", p2:"野生靈芝", p3:"頂級藏紅花", p4:"花旗參", p5:"冬蟲夏草",
+    stepTitle:"三步輕鬆領取",
+    s1t:"加入 WhatsApp", s1d:"點擊按鈕開啟 WhatsApp，聯繫我們的官方客服。",
+    s2t:"發送收件地址", s2d:"將您的姓名、聯絡電話與完整收件地址（馬來西亞／新加坡）發送給客服。",
+    s3t:"收到免費禮品", s3d:"資料審核通過後，尊貴人蔘禮包即刻免費寄送到您手中。",
+    eligTitle:"申請資格", eligSub:"嚴格限額，僅前 35 名審核通過者",
+    e1:"年滿 40 歲（含）以上", e2:"居住於馬來西亞或新加坡", e3:"活動期間前 35 名申請者",
+    e4:"每戶／每人限領一份", e5:"全程免運費，零押金、無任何隱藏費用",
+    formTitle:"預約免費禮品", formSub:"填寫您的資料，系統將開啟 WhatsApp 完成領取",
+    fName:"姓名", fPhone:"WhatsApp 號碼", fAge:"年齡", fAddr:"收件地址（馬來西亞／新加坡）",
+    fAddrPh:"請填寫可收貨的完整地址",
+    fSubmit:"提交並加入 WhatsApp",
+    formNote:"🔒 您的資料僅用於本次禮品寄送，絕不對外分享。",
+    ageErr:"抱歉，本次免費活動僅限年滿 40 歲（含）以上的朋友申請。",
+    fillErr:"請填寫完整資料。",
+    trustTitle:"為什麼值得信賴",
+    t1t:"老字號品牌", t1d:"百年參茸行，世代信賴的名優補品。",
+    t2t:"免費配送", t2d:"馬來西亞、新加坡全程免運費，安心寄送。",
+    t3t:"零押金", t3d:"完全免費、無任何隱藏收費，符合資格即可領。",
+    t4t:"正品保證", t4d:"原產地直採名貴藥材，品質層層把關。",
+    finalTitle:"僅 35 個名額 · 額滿即止",
+    finalSub:"年滿 40 歲？立即加入 WhatsApp 發送地址，搶先領取。",
+    footName:"濟善堂參茸行",
+    footTag:"名貴中藥材補品 · 馬來西亞 · 新加坡",
+    fPrivacy:"隱私條例", fContact:"聯絡我們", fAbout:"關於我們", fAdmin:"後台",
+    footCopy:"© 2024 濟善堂參茸行 版權所有",
+    stickyTxt:"🎁 野山參免費送 · <b>僅 35 個名額</b>", stickyBtn:"加入 WhatsApp",
+    lbLang:"語言：",
+    modalPrivacyT:"隱私條例",
+    modalPrivacy:"<p>我們重視您的隱私。本次活動所收集的個人資料（姓名、聯絡電話、年齡、收件地址）<b>僅用於</b>資格審核與免費禮品寄送。</p><ul><li>我們絕不會將您的資料出售、出租或分享給任何第三方。</li><li>資料採安全方式儲存，僅限我方客服人員存取。</li><li>您可隨時透過 WhatsApp 聯繫我們，要求刪除您的資料。</li></ul>",
+    modalContactT:"聯絡我們",
+    modalContact:"<p><b>濟善堂參茸行</b></p><p>📱 客服方式：僅限 WhatsApp —— 請點擊頁面任一綠色按鈕。</p><p>🚚 配送範圍：馬來西亞、新加坡</p><p>🕐 服務時間：每日 09:00–21:00（GMT+8）</p>",
+    modalAboutT:"關於我們",
+    modalAbout:"<p><b>濟善堂</b>為老字號參茸補品行，致力於為海外華人提供道地、優質的名貴中藥補品。</p><p>我們直接從長白山等知名產區產地直採，層層把關，確保每件產品皆為正品、品質有保障。</p><p>本次中秋暨週年店慶免費贈送活動，是我們回饋社會、關懷長者、分享健康的一份心意。</p>"
+  }
+};
 
-    // Form submit: save the lead to the server FIRST, then redirect to WhatsApp
-    var submitting = false;
-    document.getElementById("giftForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      if (submitting) return;
-      var name = document.getElementById("f-name").value.trim();
-      var phone = document.getElementById("f-phone").value.trim();
-      var age = document.getElementById("f-age").value.trim();
-      var addr = document.getElementById("f-addr").value.trim();
-      var item = document.getElementById("f-item").value.trim();
+var currentLang = "en";
+function setLang(lang){
+  currentLang = lang;
+  var t = I18N[lang];
+  document.documentElement.lang = (lang==="zh" ? "zh-Hant" : "en");
+  document.querySelectorAll("[data-i18n]").forEach(function(el){
+    var key = el.getAttribute("data-i18n");
+    if(t[key]!==undefined) el.innerHTML = t[key];
+  });
+  document.querySelectorAll("[data-i18n-ph]").forEach(function(el){
+    var key = el.getAttribute("data-i18n-ph");
+    if(t[key]!==undefined) el.placeholder = t[key];
+  });
+  document.getElementById("btn-en").classList.toggle("active", lang==="en");
+  document.getElementById("btn-zh").classList.toggle("active", lang==="zh");
+  try{ localStorage.setItem("gift_lang", lang); }catch(e){}
+}
+(function initLang(){
+  var saved = null;
+  try{ saved = localStorage.getItem("gift_lang"); }catch(e){}
+  if(!saved){
+    var nav = (navigator.language || "en").toLowerCase();
+    saved = (nav.indexOf("zh")===0) ? "zh" : "en";
+  }
+  setLang(saved);
+})();
 
-      if (parseInt(age, 10) < 40) {
-        alert("Sorry, this event is for participants aged 40 and above. Thank you for your support!");
-        return;
-      }
-      submitting = true;
+/* ============ WhatsApp 跳轉（走追蹤端點，後台輪詢號碼）============ */
+function goWa(e, pos){
+  if(e) e.preventDefault();
+  var url = "/api/go?type=wa&campaign=free_gift_en&pos=" + encodeURIComponent(pos||"") + adQuery();
+  window.location.href = url;
+}
 
-      var payload = {
-        name: name, phone: phone, age: parseInt(age, 10) || null,
-        address: addr, item: item, source: "gift_form",
-        campaign: "midautumn_anniv"
-      };
-      TRACK_KEYS.forEach(function(k){ if (AD_PARAMS[k]) payload[k] = AD_PARAMS[k]; });
+function submitLead(e){
+  e.preventDefault();
+  var name = document.getElementById("fName").value.trim();
+  var phone = document.getElementById("fPhone").value.trim();
+  var age = parseInt(document.getElementById("fAge").value, 10);
+  var address = document.getElementById("fAddr").value.trim();
+  var t = I18N[currentLang];
+  if(!name || !phone || !age || !address){ alert(t.fillErr); return false; }
+  if(age < 40){ alert(t.ageErr); return false; }
 
-      fetch("/api/lead", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload)
-      }).then(function(r){ return r.json(); }).catch(function(){ return { ok: false }; })
-        .then(function(data) {
-          var ref = data && data.ok ? data.ref : null;
-          var msg = "Hello! I'd like to claim my FREE premium herbs in the Mid-Autumn & Anniversary giveaway.\n"
-            + "Name: " + name + "\nPhone: " + phone + "\nAge: " + age + "\n"
-            + "Delivery address: " + addr + "\nPreferred item: " + (item || "As recommended") + "\n"
-            + (ref ? "My claim code: " + ref + "\n" : "")
-            + "Please confirm my eligibility. Thank you!";
-          window.location.href = goLink({ ref: ref || undefined, msg: msg });
-        });
-    });
+  var item = (currentLang==="zh")
+    ? "中秋店慶免費野山參禮包"
+    : "FREE Mid-Autumn Wild Ginseng Gift Set";
 
-    // Modals
-    document.querySelectorAll("[data-modal]").forEach(function(a) {
-      a.addEventListener("click", function(e) {
-        e.preventDefault();
-        document.getElementById("modal-" + a.dataset.modal).classList.add("active");
-      });
-    });
-    document.querySelectorAll("[data-close]").forEach(function(btn) {
-      btn.addEventListener("click", function() {
-        btn.closest(".modal").classList.remove("active");
-      });
-    });
-    document.querySelectorAll(".modal").forEach(function(m) {
-      m.addEventListener("click", function(e) {
-        if (e.target === m) m.classList.remove("active");
-      });
-    });
-    document.addEventListener("keydown", function(e) {
-      if (e.key === "Escape") {
-        document.querySelectorAll(".modal.active").forEach(function(m){ m.classList.remove("active"); });
-      }
-    });
+  var payload = {
+    name: name, phone: phone, age: age, address: address, item: item,
+    campaign: "free_gift_en"
+  };
+  var ad = adParams();
+  Object.keys(ad).forEach(function(k){ payload[k] = ad[k]; });
 
-    // Countdown
-    var deadline = Date.now() + (2 * 24 * 3600 + 18 * 3600 + 46 * 60 + 30) * 1000;
-    function tick() {
-      var diff = Math.max(0, deadline - Date.now());
-      var d = Math.floor(diff / 86400000);
-      var h = Math.floor(diff % 86400000 / 3600000);
-      var m = Math.floor(diff % 3600000 / 60000);
-      var s = Math.floor(diff % 60000 / 1000);
-      document.getElementById("cd-d").textContent = String(d).padStart(2, "0");
-      document.getElementById("cd-h").textContent = String(h).padStart(2, "0");
-      document.getElementById("cd-m").textContent = String(m).padStart(2, "0");
-      document.getElementById("cd-s").textContent = String(s).padStart(2, "0");
+  var btn = document.querySelector(".submit");
+  var original = btn.innerHTML;
+  btn.disabled = true;
+  btn.innerHTML = (currentLang==="zh" ? "處理中..." : "Processing...");
+
+  fetch("/api/lead", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(payload)
+  }).then(function(r){ return r.json(); }).then(function(data){
+    // 無論成功與否都導向 WhatsApp（失敗也不阻斷用戶）
+    if(data.ok && data.url){
+      window.location.href = data.url;
+    } else {
+      goWa(null, "form_fallback");
     }
-    tick();
-    setInterval(tick, 1000);
-  </script>
+  }).catch(function(){
+    goWa(null, "form_fallback");
+  });
+  return false;
+}
+
+/* ============ 倒數計時 ============ */
+(function(){
+  var end = new Date();
+  end.setDate(end.getDate() + 2);
+  end.setHours(23,59,59,0);
+  function tick(){
+    var diff = end - new Date();
+    if(diff < 0) diff = 0;
+    var d = Math.floor(diff/86400000);
+    var h = Math.floor(diff%86400000/3600000);
+    var m = Math.floor(diff%3600000/60000);
+    var s = Math.floor(diff%60000/1000);
+    var p = function(n){ return (n<10?"0":"")+n; };
+    var dh=document.getElementById("dh"),dh2=document.getElementById("dh2"),dm=document.getElementById("dm"),ds=document.getElementById("ds");
+    if(dh)dh.textContent=p(d); if(dh2)dh2.textContent=p(h); if(dm)dm.textContent=p(m); if(ds)ds.textContent=p(s);
+  }
+  tick(); setInterval(tick,1000);
+})();
+
+/* ============ 彈窗 ============ */
+function openModal(type){
+  var t = I18N[currentLang];
+  var map = {
+    privacy: [t.modalPrivacyT, t.modalPrivacy],
+    contact: [t.modalContactT, t.modalContact],
+    about:   [t.modalAboutT, t.modalAbout]
+  };
+  var m = map[type];
+  if(!m) return;
+  document.getElementById("modalContent").innerHTML = "<h3>"+m[0]+"</h3>"+m[1];
+  document.getElementById("modal").classList.add("show");
+}
+function closeModal(){ document.getElementById("modal").classList.remove("show"); }
+document.getElementById("modal").addEventListener("click", function(ev){
+  if(ev.target === this) closeModal();
+});
+</script>
 </body>
 </html>
