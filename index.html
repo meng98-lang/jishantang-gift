@@ -457,12 +457,12 @@ function setLang(lang){
  *   GADS_LABEL= 轉換標籤 (aw_xxxx/xxxx)
  * 不填則自動不載入，不影響網站。GA4 為選配。
  */
-/* 轉換動作一：點擊 WhatsApp 按鈕（出站點擊） */
-var GADS_AW = "AW-18437636505";           // Google Ads 轉換 ID
-var GADS_LABEL = "TxmfCOeCuvEcEJmD4NdE";  // WhatsApp 點擊轉換標籤
-/* 轉換動作二：提交領取表單（留下姓名電話地址，更高價值名單） */
-var GADS_AW_LEAD = "AW-18435206248";      // 表單轉換 ID
-var GADS_LABEL_LEAD = "oiieCJmxwvEcEOjYy9ZE"; // 表單轉換標籤
+/* 統一使用「實際廣告帳戶」AW-18435206248 的「點 WhatsApp」轉換動作。
+   按鈕點擊與表單提交（最終皆開啟 WhatsApp）都回報到這同一個轉換。 */
+var GADS_AW = "AW-18435206248";                  // Google Ads 轉換 ID（廣告帳戶）
+var GADS_LABEL = "oiieCJmxwvEcEOjYy9ZE";         // 點 WhatsApp 轉換標籤
+var GADS_AW_LEAD = GADS_AW;                       // 表單提交沿用同一轉換
+var GADS_LABEL_LEAD = GADS_LABEL;
 var GA4_ID = "";     // 例：G-XXXXXXXXXX（選配）
 
 (function loadGoogleTags(){
@@ -471,7 +471,7 @@ var GA4_ID = "";     // 例：G-XXXXXXXXXX（選配）
     s.src = u; s.async = async;
     document.head.appendChild(s);
   }
-  var awList = [GADS_AW, GADS_AW_LEAD].filter(Boolean);
+  var awList = [GADS_AW, GADS_AW_LEAD].filter(Boolean).filter(function(v,i,a){ return a.indexOf(v) === i; });
   var loadId = awList[0] || GA4_ID;
   if(!loadId) return;
   window.dataLayer = window.dataLayer || [];
