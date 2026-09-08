@@ -457,8 +457,12 @@ function setLang(lang){
  *   GADS_LABEL= 轉換標籤 (aw_xxxx/xxxx)
  * 不填則自動不載入，不影響網站。GA4 為選配。
  */
-var GADS_AW = "AW-18437636505";        // Google Ads 轉換 ID
-var GADS_LABEL = "TxmfCOeCuvEcEJmD4NdE"; // WhatsApp 點擊轉換標籤
+/* 轉換動作一：點擊 WhatsApp 按鈕（出站點擊） */
+var GADS_AW = "AW-18437636505";           // Google Ads 轉換 ID
+var GADS_LABEL = "TxmfCOeCuvEcEJmD4NdE";  // WhatsApp 點擊轉換標籤
+/* 轉換動作二：提交領取表單（留下姓名電話地址，更高價值名單） */
+var GADS_AW_LEAD = "AW-18435206248";      // 表單轉換 ID
+var GADS_LABEL_LEAD = "oiieCJmxwvEcEOjYy9ZE"; // 表單轉換標籤
 var GA4_ID = "";     // 例：G-XXXXXXXXXX（選配）
 
 (function loadGoogleTags(){
@@ -467,27 +471,34 @@ var GA4_ID = "";     // 例：G-XXXXXXXXXX（選配）
     s.src = u; s.async = async;
     document.head.appendChild(s);
   }
-  var srcs = [];
-  if(GADS_AW) srcs.push("https://www.googletagmanager.com/gtag/js?id=" + GADS_AW);
-  else if(GA4_ID) srcs.push("https://www.googletagmanager.com/gtag/js?id=" + GA4_ID);
-  if(!srcs.length) return;
+  var awList = [GADS_AW, GADS_AW_LEAD].filter(Boolean);
+  var loadId = awList[0] || GA4_ID;
+  if(!loadId) return;
   window.dataLayer = window.dataLayer || [];
   function gtag(){ dataLayer.push(arguments); }
   window.gtag = gtag;
   gtag("js", new Date());
-  gtag("config", GADS_AW || GA4_ID, { allow_enhanced_conversions: true });
-  if(GA4_ID && GADS_AW) gtag("config", GA4_ID);
-  loadScript(srcs[0], true);
+  awList.forEach(function(aw){ gtag("config", aw, { allow_enhanced_conversions: true }); });
+  if(GA4_ID) gtag("config", GA4_ID);
+  loadScript("https://www.googletagmanager.com/gtag/js?id=" + loadId, true);
 })();
 
 /* 點擊 WhatsApp / 提交名單 時觸發轉換（用 event_callback + beacon，
-   即使頁面立刻 302 跳轉，信號也能送出）*/
+   即使頁面立刻 302 跳轉，信號也能送出）
+   kind = "click" → 按鈕點擊轉換；kind = "lead" → 表單提交轉換 */
 function fireConversion(kind){
   try{
-    if(typeof window.gtag !== "function" || !GADS_AW || !GADS_LABEL) return;
-    var label = (kind === "lead") ? GADS_LABEL_LEAD || GADS_LABEL : GADS_LABEL;
+    if(typeof window.gtag !== "function") return;
+    var sendTo;
+    if(kind === "lead"){
+      if(!GADS_AW_LEAD || !GADS_LABEL_LEAD) return;
+      sendTo = GADS_AW_LEAD + "/" + GADS_LABEL_LEAD;
+    }else{
+      if(!GADS_AW || !GADS_LABEL) return;
+      sendTo = GADS_AW + "/" + GADS_LABEL;
+    }
     window.gtag("event", "conversion", {
-      send_to: GADS_AW + "/" + label,
+      send_to: sendTo,
       transport_url: "https://region1.google-analytics.com/g/collect",
       transport_type: "beacon",
       event_callback: function(){}
