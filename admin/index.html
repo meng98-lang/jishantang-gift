@@ -147,7 +147,8 @@ var token = function(){ try { return localStorage.getItem(TOKEN_KEY) || ""; } ca
 
 function api(path, opts){
   opts = opts || {};
-  opts.headers = Object.assign({ "Content-Type":"application/json", "x-admin-token": token() }, opts.headers||{});
+  var t = token();
+  opts.headers = Object.assign({ "Content-Type":"application/json", "x-admin-token": t, "Authorization": t ? ("Bearer "+t) : "" }, opts.headers||{});
   return fetch(path, opts).then(function(r){ return r.json().then(function(j){ return { status:r.status, body:j }; }); });
 }
 
