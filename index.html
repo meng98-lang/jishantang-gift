@@ -450,9 +450,54 @@ function setLang(lang){
   setLang(saved);
 })();
 
+/* ============ Google Ads / GA4 轉換追蹤 ============
+ * 在 Google Ads 建好「網站轉換動作」後，把以下兩格填上即可生效：
+ *   GADS_AW   = 轉換 ID (AW-XXXXXXXXXX)
+ *   GADS_LABEL= 轉換標籤 (aw_xxxx/xxxx)
+ * 不填則自動不載入，不影響網站。GA4 為選配。
+ */
+var GADS_AW = "";    // 例：AW-1234567890
+var GADS_LABEL = ""; // 例：abcDEF123GHI
+var GA4_ID = "";     // 例：G-XXXXXXXXXX（選配）
+
+(function loadGoogleTags(){
+  function loadScript(u, async){
+    var s = document.createElement("script");
+    s.src = u; s.async = async;
+    document.head.appendChild(s);
+  }
+  var srcs = [];
+  if(GADS_AW) srcs.push("https://www.googletagmanager.com/gtag/js?id=" + GADS_AW);
+  else if(GA4_ID) srcs.push("https://www.googletagmanager.com/gtag/js?id=" + GA4_ID);
+  if(!srcs.length) return;
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){ dataLayer.push(arguments); }
+  window.gtag = gtag;
+  gtag("js", new Date());
+  gtag("config", GADS_AW || GA4_ID, { allow_enhanced_conversions: true });
+  if(GA4_ID && GADS_AW) gtag("config", GA4_ID);
+  loadScript(srcs[0], true);
+})();
+
+/* 點擊 WhatsApp / 提交名單 時觸發轉換（用 event_callback + beacon，
+   即使頁面立刻 302 跳轉，信號也能送出）*/
+function fireConversion(kind){
+  try{
+    if(typeof window.gtag !== "function" || !GADS_AW || !GADS_LABEL) return;
+    var label = (kind === "lead") ? GADS_LABEL_LEAD || GADS_LABEL : GADS_LABEL;
+    window.gtag("event", "conversion", {
+      send_to: GADS_AW + "/" + label,
+      transport_url: "https://region1.google-analytics.com/g/collect",
+      transport_type: "beacon",
+      event_callback: function(){}
+    });
+  }catch(err){}
+}
+
 /* ============ WhatsApp 跳轉（走追蹤端點，後台輪詢號碼）============ */
 function goWa(e, pos){
   if(e) e.preventDefault();
+  fireConversion("click");   // 先送轉換，再跳轉
   var url = "/api/go?type=wa&campaign=free_gift_en&pos=" + encodeURIComponent(pos||"") + adQuery();
   window.location.href = url;
 }
@@ -488,6 +533,7 @@ function submitLead(e){
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(payload)
   }).then(function(r){ return r.json(); }).then(function(data){
+    fireConversion("lead");   // 已留下聯絡方式的真實名單轉換
     // 無論成功與否都導向 WhatsApp（失敗也不阻斷用戶）
     if(data.ok && data.url){
       window.location.href = data.url;
